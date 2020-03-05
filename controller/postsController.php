@@ -1,5 +1,8 @@
 <?php
 
+namespace MaureenBruihier\Projet4\controller;
+
+
 use \MaureenBruihier\Projet4\model\PostManager;
 use \MaureenBruihier\Projet4\model\entities\PostEntity;
 
@@ -28,7 +31,7 @@ class PostsController {
         }
         else 
         {
-            throw new Exception('Argument invalide.');
+            throw new \Exception('Argument invalide.');
         }
         
     }
@@ -49,7 +52,7 @@ class PostsController {
         }
         else
         {
-            throw new Exception('Argument invalide');
+            throw new \Exception('Argument invalide');
         }
     }
 
@@ -60,7 +63,7 @@ class PostsController {
 
         if ($postToAdd == false) 
         {
-            throw new Exception('Votre article n\'a pas pu être ajouté.');    
+            throw new \Exception('Votre article n\'a pas pu être ajouté.');    
         }
         else 
         {
@@ -75,7 +78,7 @@ class PostsController {
 
         if ($postToUpdate == false) 
         {
-            throw new Exception('Votre article n\'a pas pu être modifié.');    
+            throw new \Exception('Votre article n\'a pas pu être modifié.');    
         }
         else 
         {
@@ -90,7 +93,7 @@ class PostsController {
 
         if ($postToDelete == false) 
         {
-            throw new Exception('Votre article n\'a pas pu être supprimé.');    
+            throw new \Exception('Votre article n\'a pas pu être supprimé.');    
         }
         else 
         {
