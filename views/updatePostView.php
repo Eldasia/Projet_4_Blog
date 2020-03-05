@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <h1>Ajouter un article :</h1>
-<p><a href="admin.php">Retour à l'interface administrateur'</a></p>
+<p><a href="admin.php">Retour à l'interface administrateur</a></p>
 
 <form action="admin.php?action=save&id=<?=$postToDisplay->getId()?>" method='post'>
     <label for="title">Titre :</label>

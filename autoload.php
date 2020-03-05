@@ -2,9 +2,8 @@
 
 function autoload($classname)
 {
-  if (file_exists($file = $classname . '.php'))
+  if (file_exists($file = __DIR__ . '/' . $classname . '.php'))
   {
-    echo $file;
     require $file;
   }
 }

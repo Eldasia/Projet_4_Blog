@@ -1,20 +1,22 @@
 <?php
 
-require_once('controller/postsController.php');
+require_once('controller/PostsController.php');
 
 try
 {
+    $postsController = new PostsController();
+
     if (isset($_GET['action'])) 
     {
         if ($_GET['action'] == 'listPosts')
         {
-            listPosts('false');
+            $postsController->listPosts('false');
         }   
         elseif ($_GET['action'] == 'displayPost') 
         {
             if (isset($_GET['id']) && $_GET['id'] > 0)
             {
-                displayPost($_GET['id'], 'false');
+                $postsController->displayPost($_GET['id'], 'false');
             } 
             else 
             {
@@ -24,7 +26,7 @@ try
     } 
     else 
     {
-        listPosts('false');
+        $postsController->listPosts('false');
     }
     
 }

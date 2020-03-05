@@ -6,7 +6,6 @@ require_once("Manager.php");
 
 class PostManager extends Manager
 {
-    protected $db;
 
     public function __construct()
     {

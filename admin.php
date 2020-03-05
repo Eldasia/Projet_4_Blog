@@ -1,9 +1,11 @@
 <?php
 
-require_once('controller/postsController.php');
+require_once('controller/PostsController.php');
 
 try
 {
+    $postsController = new PostsController();
+
     if (isset($_GET['action']))
     {
 
@@ -11,7 +13,7 @@ try
         {
             if (isset($_GET['id']) && $_GET['id'] >0) 
             {
-                deletePost($_GET['id']);
+                $postsController->deletePost($_GET['id']);
             }
             else 
             {
@@ -26,14 +28,14 @@ try
 
         if ($_GET['action'] == 'add')
         {
-            addPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['author']), htmlspecialchars($_POST['content']));
+            $postsController->addPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['author']), htmlspecialchars($_POST['content']));
         }
 
         if ($_GET['action'] == 'update')
         {
             if (isset($_GET['id']) && $_GET['id'] >0) 
             {
-                displayPost($_GET['id'], 'true');
+                $postsController->displayPost($_GET['id'], 'true');
             }
             else 
             {
@@ -43,9 +45,9 @@ try
 
         if ($_GET['action'] == 'save')
         {
-            if (isset($_GET['id']) && $_GET['id'] >0) 
+            if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
-                UpdatePost($_GET['id'], htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']));
+                $postsController->UpdatePost($_GET['id'], htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']));
             }
             else 
             {
@@ -55,7 +57,7 @@ try
     }
     else 
     {
-        listPosts('true');
+        $postsController->listPosts('true');
     }
 }
 catch (Exception $e)

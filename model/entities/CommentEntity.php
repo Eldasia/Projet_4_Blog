@@ -4,10 +4,10 @@ namespace MaureenBruihier\Projet4\model\entities;
 
 require_once('Entity.php');
 
-class PostEntity extends Entity
+class CommentEntity extends Entity
 {
 
-    protected $_id, $_author, $_title, $_content, $_creationDate, $_changeDate;
+    protected $_id, $_author, $_title, $_content, $_creationDate, $_reporting;
 
     public function __construct($valeurs = [])
     {
@@ -24,7 +24,7 @@ class PostEntity extends Entity
     public function getTitle() {return $this->_title;}
     public function getContent() {return $this->_content;}
     public function getCreationDate() {return $this->_creationDate;}
-    public function getChangeDate() {return $this->_changeDate;}
+    public function getReporting() {return $this->_reporting;}
 
     //SETTERS//
 
@@ -33,5 +33,5 @@ class PostEntity extends Entity
     protected function setTitle(string $title) {$this->_title = $title;}
     protected function setContent(string $content) {$this->_content = $content;}
     protected function setCreationDate($creationDate) {$this->_creationDate = $creationDate;}
-    protected function setChangeDate($changeDate) {$this->_changeDate = $changeDate;}
+    protected function setReporting($reporting) {$this->_reporting = $reporting;}
 }
