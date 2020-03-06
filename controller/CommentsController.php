@@ -23,4 +23,18 @@ class CommentsController {
             header('Location: index.php?action=displayPost&id=' . $postId);
         }
     }
+
+    public function listComments(int $postId)
+    {
+        $commentManager = new CommentManager();
+        $comments = $commentManager->getComments($postId);
+        $listComments = array();
+        while ($comment = $comments->fetch())
+        {
+            $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'title'=>$comment['title'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
+            array_push($listComments, $tmp);
+        }
+        
+        return $listComments;
+    }
 }

@@ -8,6 +8,7 @@ use \MaureenBruihier\Projet4\model\entities\PostEntity;
 
 require_once('model/PostManager.php');
 require_once('model/entities/PostEntity.php');
+require_once('controller/CommentsController.php');
 
 class PostsController {
 

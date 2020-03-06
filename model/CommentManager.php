@@ -12,9 +12,9 @@ class CommentManager extends Manager
         $this->db = $this->dbConnect();
     }
 
-    public function getComments($postId)
+    public function getComments(int $postId)
     {
-        $req = $this->db->query('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments  WHERE post_id = ? ORDER BY creation_date DESC LIMIT 0, 5');
+        $req = $this->db->prepare('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments  WHERE post_id = ? ORDER BY creation_date DESC LIMIT 0, 5');
         $req->execute(array($postId));
 
         return $req;

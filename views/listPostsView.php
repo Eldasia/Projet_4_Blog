@@ -10,7 +10,7 @@
 foreach ($listPosts as $post)
 {
 ?>
-    <div class="news">
+    <div>
         <h3>
             <a href="index.php?action=displayPost&id=<?= $post->getId() ?>"><?= htmlspecialchars($post->getTitle()) ?> </a>
             <em>le <?= $post->getCreationDate() ?> par <?= $post->getAuthor()?></em>

@@ -21,6 +21,7 @@ try
         {
             if (isset($_GET['id']) && $_GET['id'] > 0)
             {
+                $commentsController->listComments($_GET['id']);
                 $postsController->displayPost($_GET['id'], 'false');
             } 
             else 
