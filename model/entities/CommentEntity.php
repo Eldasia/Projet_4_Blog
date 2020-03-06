@@ -7,11 +7,11 @@ require_once('Entity.php');
 class CommentEntity extends Entity
 {
 
-    protected $_id, $_author, $_title, $_content, $_creationDate, $_reporting;
+    protected $_id, $_postId, $_author, $_title, $_content, $_creationDate, $_reporting;
 
     public function __construct($valeurs = [])
     {
-        if (!empty($valeurs)) // Si on a spécifié des valeurs, alors on hydrate l'objet.
+        if (!empty($valeurs))
         {
           $this->hydrate($valeurs);
         }
@@ -20,6 +20,7 @@ class CommentEntity extends Entity
     //GETTERS//
 
     public function getId() {return $this->_id;}
+    public function getPostId(){return $this->_postId;}
     public function getAuthor() {return $this->_author;}
     public function getTitle() {return $this->_title;}
     public function getContent() {return $this->_content;}
@@ -29,6 +30,7 @@ class CommentEntity extends Entity
     //SETTERS//
 
     protected function setId(int $id) {$this->_id = $id;}
+    protected function setpostId(int $postId) {$this->_postId = $postId;}
     protected function setAuthor(string $author) {$this->_author = $author;}
     protected function setTitle(string $title) {$this->_title = $title;}
     protected function setContent(string $content) {$this->_content = $content;}

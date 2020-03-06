@@ -20,7 +20,7 @@ class CommentsController {
         }
         else 
         {
-            header('Location: index.php?action=displayPost');
+            header('Location: index.php?action=displayPost&id=' . $postId);
         }
     }
 }

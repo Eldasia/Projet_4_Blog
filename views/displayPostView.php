@@ -21,7 +21,7 @@
         </em>
     </p>
 
-    <form action="index.php?action=addComment&id=<?=$postToDisplay->getId();?> method='post'>
+    <form action="index.php?action=addComment&id=<?=$postToDisplay->getId();?>" method='post'>
             <label for="author">Auteur : </label><input type="text" name="author" id="author" required/> <br />
             <label for="title">Titre : </label><input type="text" name="title" id="title" required/> <br />
             <label for="content">Commentaire : </label><textarea name="content" id="content" cols="30" rows="10" required></textarea> <br />
