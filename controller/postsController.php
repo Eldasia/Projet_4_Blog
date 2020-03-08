@@ -2,13 +2,12 @@
 
 namespace MaureenBruihier\Projet4\controller;
 
+require "vendor/autoload.php";
 
+use \MaureenBruihier\Projet4\controller\CommentsController;
 use \MaureenBruihier\Projet4\model\PostManager;
 use \MaureenBruihier\Projet4\model\entities\PostEntity;
 
-require_once('model/PostManager.php');
-require_once('model/entities/PostEntity.php');
-require_once('controller/CommentsController.php');
 
 class PostsController {
 
@@ -45,6 +44,8 @@ class PostsController {
         
         if ($isAdmin == 'false') 
         {
+            $commentsController = new CommentsController();
+            $listComments = $commentsController->listComments($postId);
             require('views/displayPostView.php');
         }
         elseif ($isAdmin == 'true')

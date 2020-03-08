@@ -1,10 +1,9 @@
 <?php
+require "vendor/autoload.php";
 
 use MaureenBruihier\Projet4\controller\PostsController;
 use MaureenBruihier\Projet4\controller\CommentsController;
 
-require_once('controller/PostsController.php');
-require_once('controller/CommentsController.php');
 
 try
 {
@@ -21,7 +20,6 @@ try
         {
             if (isset($_GET['id']) && $_GET['id'] > 0)
             {
-                $commentsController->listComments($_GET['id']);
                 $postsController->displayPost($_GET['id'], 'false');
             } 
             else 

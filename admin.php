@@ -1,6 +1,8 @@
 <?php
-
 require_once('controller/PostsController.php');
+
+use \MaureenBruihier\Projet4\controller\PostsController;
+
 
 try
 {

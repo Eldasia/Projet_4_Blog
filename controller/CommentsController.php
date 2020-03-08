@@ -5,8 +5,6 @@ namespace MaureenBruihier\Projet4\controller;
 use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\entities\CommentEntity;
 
-require_once('model/CommentManager.php');
-require_once('model/entities/CommentEntity.php');
 
 class CommentsController {
     

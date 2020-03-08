@@ -1,0 +1,17 @@
+{
+    "name": "maureenbruihier/projet4",
+    "authors": [
+        {
+            "name": "Maureen Bruihier",
+            "email": "maureen.bruihier@yahoo.fr"
+    
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MaureenBruihier\\Projet4\\model\\": "model",
+            "MaureenBruihier\\Projet4\\model\\entities\\": "entities",
+            "MaureenBruihier\\Projet4\\controller\\": "controller"
+        }
+    }
+}
