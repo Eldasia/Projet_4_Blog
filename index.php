@@ -17,9 +17,24 @@ try
         }   
         elseif ($_GET['action'] == 'displayPost') 
         {
-            if (isset($_GET['id']) && $_GET['id'] > 0)
+            if (isset($_GET['id']) && ($_GET['id'] > 0))
             {
                 $postsController->displayPost($_GET['id'], 'false');
+                if(isset($_GET['commentId']) && ($_GET['commentId'] > 0))
+                {
+                    if (isset($_GET['actionComment']) && !empty($_GET['actionComment']))
+                    {
+                        $commentsController->moderateComment($_GET['actionComment'], $_GET['commentId'], $_GET['id']);
+                    }
+                    else
+                    {
+                        throw new Exception('Aucune action valide.');
+                    }
+                }
+                else
+                {
+                    throw new Exception('Aucun identifiant de commentaires valide.');
+                }
             } 
             else 
             {

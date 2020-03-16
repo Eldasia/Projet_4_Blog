@@ -41,7 +41,7 @@
                     <?= nl2br(htmlspecialchars($comment->getContent())) ?>
                     <br />
                 </p>
-                <p><a href = "#" onclick="AreYouSure('report', 'index.php?action=displayPost&commentId=<?= $comment->getId()?>&actionComment=report')">Signaler</a></p>
+                <p><a href = "#" onclick="AreYouSure('report', 'index.php?action=displayPost&id=<?=$postToDisplay->getId();?>&commentId=<?= $comment->getId()?>&actionComment=report')">Signaler</a></p>
             </div>
 
 <?php
