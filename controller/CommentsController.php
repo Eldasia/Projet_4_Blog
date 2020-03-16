@@ -5,7 +5,6 @@ namespace MaureenBruihier\Projet4\controller;
 use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\entities\CommentEntity;
 
-
 class CommentsController {
     
     public function addCommment($postId, $title, $author, $content) {
@@ -34,5 +33,24 @@ class CommentsController {
         }
         
         return $listComments;
+    }
+
+    public function moderateComment($actionComment, $commentId)
+    {
+        $commentManager = new CommentManager();
+        if (isset($actionComment))
+        {
+            switch ($actionComment) {
+                case 'validate':
+                    $moderateValue = 0;
+                    break;
+                case 'report':
+                    $moderateValue = 1;
+                    break;
+                case 'refuse':
+                    $moderateValue = -1;
+                    break;
+            }
+        }
     }
 }

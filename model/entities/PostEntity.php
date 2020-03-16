@@ -2,7 +2,7 @@
 
 namespace MaureenBruihier\Projet4\model\entities;
 
-require_once('Entity.php');
+use MaureenBruihier\Projet4\model\entities\Entity;
 
 class PostEntity extends Entity
 {
@@ -11,7 +11,7 @@ class PostEntity extends Entity
 
     public function __construct($valeurs = [])
     {
-        if (!empty($valeurs)) // Si on a spécifié des valeurs, alors on hydrate l'objet.
+        if (!empty($valeurs))
         {
           $this->hydrate($valeurs);
         }

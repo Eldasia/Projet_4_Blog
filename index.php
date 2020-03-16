@@ -4,7 +4,6 @@ require "vendor/autoload.php";
 use MaureenBruihier\Projet4\controller\PostsController;
 use MaureenBruihier\Projet4\controller\CommentsController;
 
-
 try
 {
     $postsController = new PostsController();

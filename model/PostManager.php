@@ -2,7 +2,7 @@
 
 namespace MaureenBruihier\Projet4\model;
 
-require_once("Manager.php");
+use MaureenBruihier\Projet4\model\Manager;
 
 class PostManager extends Manager
 {

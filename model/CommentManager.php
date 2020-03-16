@@ -2,7 +2,7 @@
 
 namespace MaureenBruihier\Projet4\model;
 
-require_once("Manager.php");
+use MaureenBruihier\Projet4\model\Manager;
 
 class CommentManager extends Manager
 {
@@ -14,8 +14,8 @@ class CommentManager extends Manager
 
     public function getComments(int $postId)
     {
-        $req = $this->db->prepare('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments  WHERE post_id = ? ORDER BY creation_date DESC LIMIT 0, 5');
-        $req->execute(array($postId));
+        $req = $this->db->prepare('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments  WHERE post_id = ? AND reporting = ? ORDER BY creation_date DESC');
+        $req->execute(array($postId, 0));
 
         return $req;
     }
@@ -35,8 +35,8 @@ class CommentManager extends Manager
         return $req;
     }
 
-    public function reportComment($commentId) {
-        $req = $this->db->prepare('SELECT reporting FROM comments WHERE id = ?');
-        $req->execute(array($commentId));
+    public function moderateComment($moderateValue, $commentId) {
+        $req = $this->db->prepare('UPDATE comments SET reporting = ? WHERE id = ?');
+        $req->execute(array($moderateValue, $commentId));
     }
 }

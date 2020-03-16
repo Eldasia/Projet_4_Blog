@@ -2,8 +2,6 @@
 
 namespace MaureenBruihier\Projet4\controller;
 
-require "vendor/autoload.php";
-
 use \MaureenBruihier\Projet4\controller\CommentsController;
 use \MaureenBruihier\Projet4\model\PostManager;
 use \MaureenBruihier\Projet4\model\entities\PostEntity;

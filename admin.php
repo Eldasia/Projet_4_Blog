@@ -1,8 +1,8 @@
 <?php
-require_once('controller/PostsController.php');
+
+require "vendor/autoload.php";
 
 use \MaureenBruihier\Projet4\controller\PostsController;
-
 
 try
 {

@@ -45,14 +45,12 @@
             <td><?=$post->getCreationDate()?></td>
             <td><?=$post->getChangeDate()?></td>
             <td><a href="admin.php?action=update&id=<?=$post->getId()?>">Modifier</a></td>
-            <td><a href=# onclick="AreYouSure('admin.php?action=delete&id=<?=$post->getId()?>')">Supprimer</a></td>
+            <td><a href=# onclick="AreYouSure('delete', 'admin.php?action=delete&id=<?=$post->getId()?>')">Supprimer</a></td>
         </tr>
     <?php
     }
     ?>
 </table>
-
-<script src="public/js/AreYouSure.js"></script>
 
 <?php $content = ob_get_clean(); ?>
 

@@ -8,5 +8,6 @@
         
     <body>
         <?= $content ?>
+        <script src="public/js/AreYouSure.js"></script>
     </body>
 </html>
