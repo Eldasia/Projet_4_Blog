@@ -28,17 +28,16 @@ class CommentsController {
         }
     }
 
-    public function listComments(int $postId)
+    public function listComments($reportValue)
     {
-        $comments = $this->commentManager->getComments($postId);
+        $comments = $this->commentManager->getComments($reportValue);
         $listComments = array();
         while ($comment = $comments->fetch())
         {
             $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'title'=>$comment['title'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
             array_push($listComments, $tmp);
         }
-        
-        return $listComments;
+        require('views/adminListCommentsView.php');
     }
 
     public function moderateComment($actionComment, $commentId, $postId)

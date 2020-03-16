@@ -3,15 +3,24 @@
 require "vendor/autoload.php";
 
 use \MaureenBruihier\Projet4\controller\PostsController;
+use \MaureenBruihier\Projet4\controller\CommentsController;
 
 try
 {
     $postsController = new PostsController();
+    $commentsController = new CommentsController();
 
     if (isset($_GET['action']))
     {
-
-        if ($_GET['action'] == 'delete')
+        if ($_GET['action'] == 'displayPosts')
+        {
+            $postsController->listPosts('true');
+        }
+        if ($_GET['action'] == 'displayComments')
+        {
+            $commentsController->listComments(1);
+        }
+        if ($_GET['action'] == 'deletePost')
         {
             if (isset($_GET['id']) && $_GET['id'] >0) 
             {
@@ -23,17 +32,17 @@ try
             }
         }
 
-        if ($_GET['action'] == 'create')
+        if ($_GET['action'] == 'createPost')
         {
             require('views/addPostView.php');
         }
 
-        if ($_GET['action'] == 'add')
+        if ($_GET['action'] == 'addPost')
         {
             $postsController->addPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['author']), htmlspecialchars($_POST['content']));
         }
 
-        if ($_GET['action'] == 'update')
+        if ($_GET['action'] == 'updatePost')
         {
             if (isset($_GET['id']) && $_GET['id'] >0) 
             {
@@ -59,7 +68,7 @@ try
     }
     else 
     {
-        $postsController->listPosts('true');
+        require('views/adminView.php');
     }
 }
 catch (Exception $e)

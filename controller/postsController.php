@@ -2,9 +2,10 @@
 
 namespace MaureenBruihier\Projet4\controller;
 
-use \MaureenBruihier\Projet4\controller\CommentsController;
+use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\PostManager;
 use \MaureenBruihier\Projet4\model\entities\PostEntity;
+use \MaureenBruihier\Projet4\model\entities\CommentEntity;
 
 
 class PostsController {
@@ -25,7 +26,7 @@ class PostsController {
         } 
         elseif ($isAdmin == 'true') 
         {
-            require('views/adminView.php');
+            require('views/adminListPostsView.php');
         }
         else 
         {
@@ -42,8 +43,14 @@ class PostsController {
         
         if ($isAdmin == 'false') 
         {
-            $commentsController = new CommentsController();
-            $listComments = $commentsController->listComments($postId);
+            $commentManager = new CommentManager();
+            $comments = $commentManager->getCommentsPost($postId);
+            $listComments = array();
+            while ($comment = $comments->fetch())
+            {
+                $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'title'=>$comment['title'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
+                array_push($listComments, $tmp);
+            }
             require('views/displayPostView.php');
         }
         elseif ($isAdmin == 'true')
