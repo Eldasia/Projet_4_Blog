@@ -19,7 +19,6 @@ try
         {
             if (isset($_GET['id']) && ($_GET['id'] > 0))
             {
-                $postsController->displayPost($_GET['id'], 'false');
                 if(isset($_GET['commentId']) && ($_GET['commentId'] > 0))
                 {
                     if (isset($_GET['actionComment']) && !empty($_GET['actionComment']))
@@ -32,9 +31,7 @@ try
                     }
                 }
                 else
-                {
-                    throw new Exception('Aucun identifiant de commentaires valide.');
-                }
+                {$postsController->displayPost($_GET['id'], 'false');}
             } 
             else 
             {
@@ -63,4 +60,5 @@ try
 catch (Exception $e) 
 {
     $errorMessage = $e->getMessage();
+    require('views/errorView.php');
 }
