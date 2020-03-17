@@ -28,9 +28,21 @@ class CommentsController {
         }
     }
 
-    public function listComments($reportValue)
+    public function listComments($reportValue = 5)
     {
-        $comments = $this->commentManager->getComments($reportValue);
+        echo $reportValue;
+        if ($reportValue == 5)
+        {
+            $comments = $this->commentManager->getComments();
+        }
+        elseif (0 < $reportValue && $reportValue < 4)
+        {
+            $comments = $this->commentManager->getCommentsReport($reportValue);
+        }
+        else
+        {
+            throw new Exception('Aucune valeur de signalement valide.');
+        }
         $listComments = array();
         while ($comment = $comments->fetch())
         {
@@ -44,20 +56,20 @@ class CommentsController {
     {
         switch ($actionComment) {
             case 'validate':
-                $moderateValue = 0;
+                $moderateValue = 2;
                 break;
             case 'report':
-                $moderateValue = 1;
+                $moderateValue = 3;
                 break;
             case 'refuse':
-                $moderateValue = -1;
+                $moderateValue = 1;
                 break;
         }
         $moderateComment = $this->commentManager->moderateComment($moderateValue, $commentId);
 
         if ($moderateComment == false)
         {
-            throw new Exception('Le signalament n\'a pas pu être effectué');
+            throw new Exception('Le signalement n\'a pas pu être effectué');
         }
         else
         {

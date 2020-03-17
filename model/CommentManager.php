@@ -15,14 +15,21 @@ class CommentManager extends Manager
     public function getCommentsPost($postId)
     {
         $req = $this->db->prepare('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments  WHERE post_id = ? AND reporting = ? ORDER BY creation_date DESC');
-        $req->execute(array($postId, 0));
+        $req->execute(array($postId, 1));
 
         return $req;
     }
 
-    public function getComments($reportValue)
+    public function getComments()
     {
-        $req = $this->db->prepare('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments  WHERE reporting = ? ORDER BY creation_date DESC');
+        $req = $this->db->query('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments ORDER BY reporting DESC, creation_date DESC');
+
+        return $req;
+    }
+
+    public function getCommentsReport($reportValue)
+    {
+        $req = $this->db->prepare('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments WHERE reporting = ? ORDER BY creation_date DESC');
         $req->execute(array($reportValue));
 
         return $req;

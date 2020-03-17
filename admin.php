@@ -18,7 +18,14 @@ try
         }
         if ($_GET['action'] == 'displayComments')
         {
-            $commentsController->listComments(1);
+            if (isset($_GET['reportValue']) && !empty($_GET['reportValue']))
+            {
+                $commentsController->listComments($_GET['reportValue']);
+            }
+            else
+            {
+                $commentsController->listComments();
+            }
         }
         if ($_GET['action'] == 'deletePost')
         {

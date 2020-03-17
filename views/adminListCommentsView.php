@@ -4,6 +4,8 @@
 
 <p><a href="admin.php">Retour à l'interface d'administration</a></p>
 
+<p><a href="admin.php?action=displayComments">Tous les commentaires</a> <a href="admin.php?action=displayComments&reportValue=2">Commentaires validés</a> <a href="admin.php?action=displayComments&reportValue=3">Commentaires en attente</a> <a href="admin.php?action=displayComments&reportValue=1">Commentaires refusés</a></p>
+
 <?php
 foreach ($listComments as $comment)
 {
