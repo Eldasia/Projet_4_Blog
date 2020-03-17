@@ -5,3 +5,10 @@ td {
 table {
     border-collapse: collapse;
 }
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: grey;
+}

@@ -18,13 +18,27 @@ try
         }
         if ($_GET['action'] == 'displayComments')
         {
-            if (isset($_GET['reportValue']) && !empty($_GET['reportValue']))
+            if (isset($_GET['commentId']) && !empty($_GET['commentId']))
             {
-                $commentsController->listComments($_GET['reportValue']);
+                if ($_GET['actionComment'] == "validate" || $_GET['actionComment'] == "refuse")
+                {
+                    $commentsController->moderateComment($_GET['actionComment'], $_GET['commentId']);
+                }
+                else 
+                {
+                    throw new Exception('Aucune action valide.');
+                }
             }
             else
             {
-                $commentsController->listComments();
+                if (isset($_GET['reportValue']) && !empty($_GET['reportValue']))
+                {
+                    $commentsController->listComments($_GET['reportValue']);
+                }
+                else
+                {
+                    $commentsController->listComments();
+                }
             }
         }
         if ($_GET['action'] == 'deletePost')
@@ -78,7 +92,8 @@ try
         require('views/adminView.php');
     }
 }
-catch (Exception $e)
+catch (Exception $e) 
 {
-    $errorMessage->getMessage();
+    $errorMessage = $e->getMessage();
+    require('views/errorView.php');
 }

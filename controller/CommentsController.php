@@ -30,7 +30,6 @@ class CommentsController {
 
     public function listComments($reportValue = 5)
     {
-        echo $reportValue;
         if ($reportValue == 5)
         {
             $comments = $this->commentManager->getComments();
@@ -52,7 +51,7 @@ class CommentsController {
         require('views/adminListCommentsView.php');
     }
 
-    public function moderateComment($actionComment, $commentId, $postId)
+    public function moderateComment($actionComment, $commentId, $postId = null)
     {
         switch ($actionComment) {
             case 'validate':
@@ -70,6 +69,10 @@ class CommentsController {
         if ($moderateComment == false)
         {
             throw new Exception('Le signalement n\'a pas pu être effectué');
+        }
+        else if ($postId == null)
+        {
+            header('Location: admin.php?action=displayComments');
         }
         else
         {
