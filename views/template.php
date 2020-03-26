@@ -8,7 +8,9 @@
     </head>
         
     <body>
-        <?= $content ?>
+        <div class="center">
+            <?= $content ?>
+        </div>
         <script src="public/js/AreYouSure.js"></script>
     </body>
 </html>

@@ -1,14 +1,63 @@
+/* line 7, scss/style.scss */
+body {
+  background: fixed #001a23;
+  margin: 0;
+}
+
+/* line 13, scss/style.scss */
+div.center {
+  width: 95%;
+  margin: auto;
+  padding: 10px;
+  background: #e8f1f2;
+  height: 1000px;
+}
+
+/* line 22, scss/style.scss */
+.changeText {
+  text-align: right;
+}
+
+/* line 26, scss/style.scss */
+h1, h3 {
+  text-align: center;
+  margin-top: 0;
+}
+
+/* line 31, scss/style.scss */
+section {
+  background: #7a9e7e;
+  padding: 3px;
+  margin: 5px;
+}
+/* line 35, scss/style.scss */
+section p {
+  background: #7a9e7e !important;
+}
+
+/* line 40, scss/style.scss */
+p {
+  background: #e8f1f2 !important;
+}
+/* line 42, scss/style.scss */
+p.pages {
+  text-align: center;
+}
+
+/* line 47, scss/style.scss */
 td {
-    border: 2px black solid;
+  border: 2px #001a23 solid;
 }
 
+/* line 51, scss/style.scss */
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
+/* line 55, scss/style.scss */
 .disabled {
-    pointer-events: none;
-    cursor: default;
-    text-decoration: none;
-    color: grey;
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: #7a9e7e;
 }

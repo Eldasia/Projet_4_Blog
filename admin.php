@@ -14,11 +14,7 @@ try
     {
         if ($_GET['action'] == 'displayPosts')
         {
-<<<<<<< HEAD
             $postsController->listPosts(0, 'true');
-=======
-            $postsController->listPosts('true');
->>>>>>> d2c8a812fa308b9d3bd580449199b192881496c0
         }
         if ($_GET['action'] == 'displayComments')
         {

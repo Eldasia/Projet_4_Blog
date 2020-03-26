@@ -1,7 +1,7 @@
 <?php $title = "Blog de Jean Forteroche"; ?>
 
 <?php ob_start(); ?>
-<h1>Bienvenue sur le blog de Jean Forteroche !</h1>
+<h1 id="titleBlog">Bienvenue sur le blog de Jean Forteroche !</h1>
 <p><a href="admin.php">Interface administrateur</a></p>
 <p>Derniers billets du blog :</p>
 
@@ -9,7 +9,7 @@
 foreach ($listPosts as $post)
 {
 ?>
-    <div>
+    <section>
         <h3>
             <a href="index.php?action=displayPost&id=<?= $post->getId() ?>"><?= htmlspecialchars($post->getTitle()) ?> </a>
             <em>le <?= $post->getCreationDate() ?> par <?= $post->getAuthor()?></em>
@@ -18,7 +18,7 @@ foreach ($listPosts as $post)
         <p>
             <?= substr(nl2br($post->getContent()), 0, 400) ?> ...
             <br />
-            <em>
+            <em class="changeText">
                 <?php if (!empty($post->getChangeDate())) 
                 { 
                     ?>
@@ -29,12 +29,12 @@ foreach ($listPosts as $post)
             </em>
             <br />
         </p>
-    </div>
+            </section>
 <?php
 }
 ?>
 
-<p> 
+<p class="pages"> 
 <?php
 for ($i = 1; $i <= $nb_page_posts; $i++) 
 {
@@ -42,6 +42,7 @@ for ($i = 1; $i <= $nb_page_posts; $i++)
 }
 $posts->closeCursor();
 ?>
+</p>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

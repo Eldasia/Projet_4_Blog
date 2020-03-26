@@ -1,0 +1,60 @@
+$cd-1: #E8F1F2;
+$cd-2: #B3EFB2;
+$cd-3: #7A9E7E;
+$cd-4: #31493C;
+$cd-5: #001A23;
+
+body {
+    background: fixed $cd-5;
+    margin: 0;
+}
+
+div {
+    &.center{
+        width: 95%;
+        margin: auto;
+        padding: 10px;
+        background: $cd-1;
+        height: 1000px;
+    }
+}
+
+.changeText {
+    text-align: right;
+}
+
+h1, h3 {
+    text-align: center;
+    margin-top: 0;
+}
+
+section {
+    background: $cd-3;
+    padding: 3px;
+    margin: 5px;
+    & p {
+        background: $cd-3 !important;
+    }
+}
+
+p {
+    background: $cd-1 !important;
+    &.pages {
+        text-align: center;
+    }
+}
+
+td {
+    border: 2px $cd-5 solid;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: $cd-3;
+}

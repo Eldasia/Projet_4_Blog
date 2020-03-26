@@ -15,7 +15,6 @@ foreach ($listComments as $comment)
         <td><?=$comment->getAuthor()?></td>
         <td><?=$comment->getContent()?></td>
         <td><?=$comment->getCreationDate()?></td>
-        <td><?=$comment->getReporting()?></td>
         <td><a href="admin.php?action=displayComments&commentId=<?= $comment->getId()?>&actionComment=validate" class="<?php if($comment->getReporting() == 2){echo "disabled";}?>">Valider</a></td>
         <td><a href="admin.php?action=displayComments&commentId=<?= $comment->getId()?>&actionComment=refuse" class="<?php if($comment->getReporting() == 1){echo "disabled";}?>">Refuser</a></td>
     </tr>
