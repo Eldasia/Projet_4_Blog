@@ -1,6 +1,32 @@
 <?php $title = "Interface administrateur"; ?>
 
 <?php ob_start(); ?>
+<<<<<<< HEAD
+=======
+<h1>Bienvenue sur mon blog !</h1>
+<?php
+    if (isset($_GET['result'])) 
+    {
+        if ($_GET['result'] == 1)
+        {
+            $messageResult = 'Votre article a bien été modifié.';
+        }
+        elseif ($_GET['result'] == 2)
+        {
+            $messageResult = 'Votre article a bien été supprimé.';
+        }
+        elseif ($_GET['result'] == 3)
+        {
+            $messageResult = 'Votre article a bien été ajouté.';
+        }
+        else
+        {
+            throw new Exception('Aucun message ne correspond à ce résultat.');
+        }
+        ?><p><?=$messageResult?></p><?php
+    }
+?>
+>>>>>>> d2c8a812fa308b9d3bd580449199b192881496c0
 
 <p><a href="admin.php">Retour à l'interface d'administration</a></p>
 <p><a href="admin.php?action=createPost">Ajouter un article</a></p>
