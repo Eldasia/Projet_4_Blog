@@ -1,7 +1,9 @@
-<?php $title = "Interface administrateur"; ?>
+<?php $title = "Interface administrateur"?>
 
 <?php ob_start(); ?>
-<h1>Bienvenue sur mon blog !</h1>
+
+<h1>Interface administrateur</h1>
+
 <?php
     if (isset($_GET['result'])) 
     {
@@ -26,34 +28,9 @@
 ?>
 
 <p><a href="index.php">Retour à la liste des billets</a></p>
-<p><a href="admin.php?action=create">Ajouter un article</a></p>
-<table>
-    <tr>
-        <th>Titre</td>
-        <th>Auteur</td>
-        <th>Date de création</td>
-        <th>Date de modification</td>
-        <th colspan = 2>Action</td>
-    </tr>
-    <?php
-    foreach ($listPosts as $post) 
-    {
-    ?>
-        <tr>
-            <td><?=$post->getTitle()?></td>
-            <td><?=$post->getAuthor()?></td>
-            <td><?=$post->getCreationDate()?></td>
-            <td><?=$post->getChangeDate()?></td>
-            <td><a href="admin.php?action=update&id=<?=$post->getId()?>">Modifier</a></td>
-            <td><a href=# onclick="AreYouSure('admin.php?action=delete&id=<?=$post->getId()?>')">Supprimer</a></td>
-        </tr>
-    <?php
-    }
-    ?>
-</table>
 
-<script src="public/js/AreYouSure.js"></script>
+<h2><a href="admin.php?action=displayPosts">Les articles</a></h2><h2><a href="admin.php?action=displayComments">Les commentaires</a></h2>
 
-<?php $content = ob_get_clean(); ?>
+<?php $content = ob_get_clean();
 
-<?php require('template.php'); ?>
+require('template.php'); ?>

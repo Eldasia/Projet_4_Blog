@@ -2,7 +2,7 @@
 
 namespace MaureenBruihier\Projet4\model\entities;
 
-require_once('Entity.php');
+use MaureenBruihier\Projet4\model\entities\Entity;
 
 class CommentEntity extends Entity
 {

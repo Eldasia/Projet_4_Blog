@@ -1,17 +1,47 @@
 <?php
-require_once('controller/PostsController.php');
+
+require "vendor/autoload.php";
 
 use \MaureenBruihier\Projet4\controller\PostsController;
-
+use \MaureenBruihier\Projet4\controller\CommentsController;
 
 try
 {
     $postsController = new PostsController();
+    $commentsController = new CommentsController();
 
     if (isset($_GET['action']))
     {
-
-        if ($_GET['action'] == 'delete')
+        if ($_GET['action'] == 'displayPosts')
+        {
+            $postsController->listPosts(0, 'true');
+        }
+        if ($_GET['action'] == 'displayComments')
+        {
+            if (isset($_GET['commentId']) && !empty($_GET['commentId']))
+            {
+                if ($_GET['actionComment'] == "validate" || $_GET['actionComment'] == "refuse")
+                {
+                    $commentsController->moderateComment($_GET['actionComment'], $_GET['commentId']);
+                }
+                else 
+                {
+                    throw new Exception('Aucune action valide.');
+                }
+            }
+            else
+            {
+                if (isset($_GET['reportValue']) && !empty($_GET['reportValue']))
+                {
+                    $commentsController->listComments($_GET['reportValue']);
+                }
+                else
+                {
+                    $commentsController->listComments();
+                }
+            }
+        }
+        if ($_GET['action'] == 'deletePost')
         {
             if (isset($_GET['id']) && $_GET['id'] >0) 
             {
@@ -23,17 +53,17 @@ try
             }
         }
 
-        if ($_GET['action'] == 'create')
+        if ($_GET['action'] == 'createPost')
         {
             require('views/addPostView.php');
         }
 
-        if ($_GET['action'] == 'add')
+        if ($_GET['action'] == 'addPost')
         {
-            $postsController->addPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['author']), htmlspecialchars($_POST['content']));
+            $postsController->addPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['author']), nl2br($_POST['content']));
         }
 
-        if ($_GET['action'] == 'update')
+        if ($_GET['action'] == 'updatePost')
         {
             if (isset($_GET['id']) && $_GET['id'] >0) 
             {
@@ -59,10 +89,11 @@ try
     }
     else 
     {
-        $postsController->listPosts('true');
+        require('views/adminView.php');
     }
 }
-catch (Exception $e)
+catch (Exception $e) 
 {
-    $errorMessage->getMessage();
+    $errorMessage = $e->getMessage();
+    require('views/errorView.php');
 }

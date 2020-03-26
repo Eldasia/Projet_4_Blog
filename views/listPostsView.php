@@ -1,10 +1,9 @@
 <?php $title = "Blog de Jean Forteroche"; ?>
 
 <?php ob_start(); ?>
-<h1>Bienvenue sur mon blog !</h1>
+<h1>Bienvenue sur le blog de Jean Forteroche !</h1>
 <p><a href="admin.php">Interface administrateur</a></p>
 <p>Derniers billets du blog :</p>
-
 
 <?php
 foreach ($listPosts as $post)
@@ -17,7 +16,7 @@ foreach ($listPosts as $post)
         </h3>
         
         <p>
-            <?= substr(nl2br(htmlspecialchars($post->getContent())), 0, 400) ?> ...
+            <?= substr(nl2br($post->getContent()), 0, 400) ?> ...
             <br />
             <em>
                 <?php if (!empty($post->getChangeDate())) 
@@ -32,6 +31,14 @@ foreach ($listPosts as $post)
         </p>
     </div>
 <?php
+}
+?>
+
+<p> 
+<?php
+for ($i = 1; $i <= $nb_page_posts; $i++) 
+{
+    echo '<a href = "index.php?page= '. $i . '" > '. $i .' <a>';
 }
 $posts->closeCursor();
 ?>
