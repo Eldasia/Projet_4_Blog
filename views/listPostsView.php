@@ -4,10 +4,10 @@
 <h1 id="titleBlog">Bienvenue sur le blog de Jean Forteroche !</h1>
 <p>Derniers billets du blog :</p>
 
-<div class="card-columns">
+<div class="row row-cols-1 row-cols-md-2">
 <?php foreach ($listPosts as $post): ?>
-    
-        <div class="card mb-3">
+    <div class="col mb-4">
+        <div class="card" style="height: 300px;">
             <div class="card-header"><a href="index.php?action=displayPost&id=<?= $post->getId() ?>"><?= htmlspecialchars($post->getTitle()) ?> </a></div>
             <div class="card-body">
             <?= substr(nl2br($post->getContent()), 0, 400) ?> ...
@@ -16,14 +16,21 @@
                 <em>le <?= $post->getCreationDate() ?></em>
             </div>
         </div>
+    </div>
 
 <?php endforeach; ?>
 </div>
+
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-2" role="group">
+    <?php for ($i = 1; $i <= $nb_page_posts; $i++): ?>
+        <a type="button" href="index.php?page=<?= $i ?>" class="btn btn-secondary"><?= $i ?></a>
+    <?php endfor; ?>
+    </div>
+</div>
 <nav aria-label="Page navigation example">
     <ul class="pagination">
-    <?php for ($i = 1; $i <= $nb_page_posts; $i++): ?>
-        <li class="page-item"><a class="page-link" href="index.php?page=<?= $i ?>"><?= $i ?></a></li>
-    <?php endfor; ?>
+
     </ul>
 </nav>
 

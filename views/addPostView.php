@@ -1,22 +1,30 @@
 <?php $title = "Ajouter un article"; ?>
 
 <?php ob_start(); ?>
-<h1>Ajouter un article :</h1>
-<p><a href="admin.php">Retour à l'interface administrateur'</a></p>
 
-<form action="admin.php?action=addPost" method='post'>
-    <label for="title">Titre :</label>
-    <input type="text" name="title" required/> <br />
-    <label for="author">Auteur :</label>
-    <input type="text" name="author" required /> <br />
-    <label for="content">Contenu :</label> <br />
-    <textarea name="content" id="mytextarea"></textarea> <br />
-    <input type="submit" value="Ajouter"/>
-</form>
+<div class="card mt-5">
+  <div class="card-header d-flex justify-content-between">
+    <h2>Ajouter un article :</h2>
+    <a class="btn btn-primary" href="admin.php">Retour à l'interface administrateur</a>
+  </div>
+  <div class="card-body">
+    <form action="admin.php?action=addPost" method='post'>
+      <div class="form-group">
+        <label for="title">Titre :</label>
+        <input type="text" name="title" required/> <br />
+      </div>
+      <div class="form-group">
+        <label for="content">Contenu :</label> <br />
+        <textarea name="content" id="addMytextarea"></textarea> <br />
+      </div>
+      <button class="btn btn-primary" type="submit">Ajouter</button>
+    </form>
+  </div>
+</div>
 
 <script>
     tinymce.init({
-      selector: '#mytextarea',
+      selector: '#addMytextarea',
       menubar: 'hidden'
     });
   </script>

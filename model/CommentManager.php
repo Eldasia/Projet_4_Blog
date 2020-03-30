@@ -14,7 +14,7 @@ class CommentManager extends Manager
 
     public function getCommentsPost($postId)
     {
-        $req = $this->db->prepare('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments  WHERE post_id = ? AND reporting = ? ORDER BY creation_date DESC');
+        $req = $this->db->prepare('SELECT id, post_id, author, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments  WHERE post_id = ? AND reporting = ? ORDER BY creation_date DESC');
         $req->execute(array($postId, 2));
 
         return $req;
@@ -22,23 +22,23 @@ class CommentManager extends Manager
 
     public function getComments()
     {
-        $req = $this->db->query('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments ORDER BY reporting DESC, creation_date DESC');
+        $req = $this->db->query('SELECT id, post_id, author, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments ORDER BY reporting DESC, creation_date DESC');
 
         return $req;
     }
 
     public function getCommentsReport($reportValue)
     {
-        $req = $this->db->prepare('SELECT id, post_id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments WHERE reporting = ? ORDER BY creation_date DESC');
+        $req = $this->db->prepare('SELECT id, post_id, author, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments WHERE reporting = ? ORDER BY creation_date DESC');
         $req->execute(array($reportValue));
 
         return $req;
     }
 
-    public function addComment($postId, $title, $author, $content)
+    public function addComment($postId, $author, $content)
     {
-        $req = $this->db->prepare('INSERT INTO comments(post_id, title, author, content, creation_date) VALUES(?, ?, ?, ?, now())');
-        $req->execute(array($postId, $title, $author, $content));
+        $req = $this->db->prepare('INSERT INTO comments(post_id, author, content, creation_date) VALUES(?, ?, ?, now())');
+        $req->execute(array($postId, $author, $content));
 
         return $req;
     }

@@ -45,10 +45,10 @@ try
             }
         }
         else if ($_GET['action'] == 'addComment')
-        {
+        {   
             if (isset($_GET['id']) && $_GET['id'] > 0)
             {
-                $commentsController->addCommment($_GET['id'], $_POST['title'], $_POST['author'], $_POST['content']);
+                $commentsController->addCommment($_GET['id'], $_POST['author'], $_POST['content']);
             }
             else
             {

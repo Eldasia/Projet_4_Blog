@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<h1>Interface administrateur</h1>
+<p class="text-center m-5 display-2">Interface administrateur</p>
 
 <?php
     if (isset($_GET['result'])) 
@@ -27,9 +27,13 @@
     }
 ?>
 
-<p><a href="index.php">Retour à la liste des billets</a></p>
-
-<h2><a href="admin.php?action=displayPosts">Les articles</a></h2><h2><a href="admin.php?action=displayComments">Les commentaires</a></h2>
+<a class="btn btn-primary" href="index.php">Retour à la liste des billets</a>
+<div class="card my-4">
+    <div class="card-body">
+        <a class="btn btn-lg btn-outline-info btn-block" href="admin.php?action=displayPosts">Les articles</a>
+        <a class="btn btn-lg btn-outline-info btn-block" href="admin.php?action=displayComments">Les commentaires</a>
+    </div>
+</div>
 
 <?php $content = ob_get_clean();
 

@@ -60,7 +60,7 @@ try
 
         if ($_GET['action'] == 'addPost')
         {
-            $postsController->addPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['author']), nl2br($_POST['content']));
+            $postsController->addPost(htmlspecialchars($_POST['title']), nl2br($_POST['content']));
         }
 
         if ($_GET['action'] == 'updatePost')
@@ -79,7 +79,7 @@ try
         {
             if (isset($_GET['id']) && $_GET['id'] > 0) 
             {
-                $postsController->UpdatePost($_GET['id'], htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']));
+                $postsController->UpdatePost($_GET['id'], htmlspecialchars($_POST['title']), nl2br($_POST['content']));
             }
             else 
             {

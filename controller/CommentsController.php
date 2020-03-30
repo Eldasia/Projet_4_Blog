@@ -15,8 +15,8 @@ class CommentsController {
         $this->commentManager = new CommentManager();
     }
 
-    public function addCommment($postId, $title, $author, $content) {
-        $commentToAdd = $this->commentManager->addComment($postId, $title, $author, $content);
+    public function addCommment($postId, $author, $content) {
+        $commentToAdd = $this->commentManager->addComment($postId, $author, $content);
 
         if ($commentToAdd == false) 
         {
@@ -24,7 +24,8 @@ class CommentsController {
         }
         else 
         {
-            header('Location: index.php?action=displayPost&id=' . $postId);
+            echo "Ha";
+            //header('Location: index.php?action=displayPost&id=' . $postId);
         }
     }
 
@@ -45,7 +46,7 @@ class CommentsController {
         $listComments = array();
         while ($comment = $comments->fetch())
         {
-            $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'title'=>$comment['title'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
+            $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
             array_push($listComments, $tmp);
         }
         require('views/adminListCommentsView.php');

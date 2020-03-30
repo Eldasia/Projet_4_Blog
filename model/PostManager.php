@@ -15,7 +15,7 @@ class PostManager extends Manager
     public function getPosts($firstPost)
     {
 
-        $req = $this->db->prepare('SELECT id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(change_date, \'%d/%m/%Y à %Hh%imin%ss\') AS change_date_fr FROM posts ORDER BY creation_date DESC LIMIT :firstPost, 5');
+        $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(change_date, \'%d/%m/%Y à %Hh%imin%ss\') AS change_date_fr FROM posts ORDER BY creation_date DESC LIMIT :firstPost, 5');
         $req->bindParam(':firstPost', $firstPost, \PDO::PARAM_INT);
         $req->execute();
         
@@ -24,17 +24,17 @@ class PostManager extends Manager
 
     public function getPost($postId)
     {
-        $req = $this->db->prepare('SELECT id, author, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(change_date, \'%d/%m/%Y à %Hh%imin%ss\') AS change_date_fr FROM posts WHERE id = ?');
+        $req = $this->db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(change_date, \'%d/%m/%Y à %Hh%imin%ss\') AS change_date_fr FROM posts WHERE id = ?');
         $req->execute(array($postId));
         $post = $req->fetch();
 
         return $post;
     }
 
-    public function addPost($title, $author, $content)
+    public function addPost($title, $content)
     {
-        $req = $this->db->prepare('INSERT INTO posts(title, author, content, creation_date) VALUES(?, ?, ?, now())');
-        $req->execute(array($title, $author, $content));
+        $req = $this->db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(?, ?, now())');
+        $req->execute(array($title, $content));
 
         return $req;
     }

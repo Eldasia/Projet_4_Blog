@@ -25,7 +25,7 @@ class PostsController {
 
         while ($post = $posts->fetch())
         {
-            $tmp = new PostEntity([ 'id'=>$post['id'], 'author'=>$post['author'], 'title'=>$post['title'], 'content'=>$post['content'], 'creationDate'=>$post['creation_date_fr'], 'changeDate'=>$post['change_date_fr']]);
+            $tmp = new PostEntity([ 'id'=>$post['id'], 'title'=>$post['title'], 'content'=>$post['content'], 'creationDate'=>$post['creation_date_fr'], 'changeDate'=>$post['change_date_fr']]);
             array_push($listPosts, $tmp);
         }
         if ($isAdmin == 'false') 
@@ -46,7 +46,7 @@ class PostsController {
     public function displayPost($postId, $isAdmin) 
     {   
         $post = $this->postManager->getPost($postId);
-        $postToDisplay = new PostEntity([ 'id'=>$post['id'], 'author'=>$post['author'], 'title'=>$post['title'], 'content'=>$post['content'], 'creationDate'=>$post['creation_date_fr'], 'changeDate'=>$post['change_date_fr']]);
+        $postToDisplay = new PostEntity([ 'id'=>$post['id'], 'title'=>$post['title'], 'content'=>$post['content'], 'creationDate'=>$post['creation_date_fr'], 'changeDate'=>$post['change_date_fr']]);
         
         if ($isAdmin == 'false') 
         {
@@ -55,7 +55,7 @@ class PostsController {
             $listComments = array();
             while ($comment = $comments->fetch())
             {
-                $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'title'=>$comment['title'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
+                $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
                 array_push($listComments, $tmp);
             }
             require('views/displayPostView.php');
@@ -70,9 +70,9 @@ class PostsController {
         }
     }
 
-    public function addPost($title, $author, $content)
+    public function addPost($title, $content)
     {
-        $postToAdd = $this->postManager->addPost($title, $author, $content);
+        $postToAdd = $this->postManager->addPost($title, $content);
 
         if ($postToAdd == false) 
         {
