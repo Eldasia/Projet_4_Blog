@@ -2,9 +2,20 @@
 
 <?php ob_start(); ?>
 
-<a class="btn btn-primary my-3" href="admin.php">Retour à l'interface d'administration</a>
+<p><a class="btn btn-primary mt-4" href="admin.php">Retour à l'interface d'administration</a></p>
 
-<p><a href="admin.php?action=displayComments">Tous les commentaires</a> <a href="admin.php?action=displayComments&reportValue=2">Commentaires validés</a> <a href="admin.php?action=displayComments&reportValue=3">Commentaires en attente</a> <a href="admin.php?action=displayComments&reportValue=1">Commentaires refusés</a></p>
+<p class="text-center m-4 display-3">Les commentaires</p>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+    <div class="btn-group mb-2" role="group">
+        <a type="button" class="btn btn-outline-info <?php if(!isset($_GET['reportValue']) || (empty($_GET['reportValue']))){echo "active";}?>" href="admin.php?action=displayComments">Tous les commentaires</a>
+        <a type="button" class="btn btn-outline-info <?php if(isset($_GET['reportValue']) && ($_GET['reportValue']) == 2){echo "active";}?>" href="admin.php?action=displayComments&reportValue=2">Commentaires validés</a>
+        <a type="button" class="btn btn-outline-info <?php if(isset($_GET['reportValue']) && ($_GET['reportValue']) == 3){echo "active";}?>" href="admin.php?action=displayComments&reportValue=3">Commentaires en attente</a>
+        <a type="button" class="btn btn-outline-info <?php if(isset($_GET['reportValue']) && ($_GET['reportValue']) == 1){echo "active";}?>" href="admin.php?action=displayComments&reportValue=1">Commentaires refusés</a>
+    </div>
+  </div>
+</div>
 
 <table class="table mt-3">
   <thead class="thead-dark">

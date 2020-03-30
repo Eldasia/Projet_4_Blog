@@ -24,8 +24,7 @@ class CommentsController {
         }
         else 
         {
-            echo "Ha";
-            //header('Location: index.php?action=displayPost&id=' . $postId);
+            header('Location: index.php?action=displayPost&id=' . $postId);
         }
     }
 

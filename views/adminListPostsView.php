@@ -2,10 +2,11 @@
 
 <?php ob_start(); ?>
 
+<a class="btn btn-primary mt-4" href="admin.php">Retour à l'interface d'administration</a>
+
 <p class="text-center m-4 display-3">Les articles</p>
 
-<div class="d-flex justify-content-between">
-  <a class="btn btn-primary" href="admin.php">Retour à l'interface d'administration</a>
+<div class="d-flex flex-row-reverse">
   <a class="btn btn-outline-success" href="admin.php?action=createPost">Ajouter un article</a>
 </div>
 

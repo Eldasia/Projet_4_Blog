@@ -1,7 +1,7 @@
 <?php $title = "Blog de Jean Forteroche"; ?>
 
 <?php ob_start(); ?>
-<h1 id="titleBlog">Bienvenue sur le blog de Jean Forteroche !</h1>
+<p class="text-center m-5 display-2">Bienvenue sur le blog de Jean Forteroche</p>
 <p>Derniers billets du blog :</p>
 
 <div class="row row-cols-1 row-cols-md-2">
