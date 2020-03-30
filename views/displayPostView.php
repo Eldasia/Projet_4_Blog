@@ -1,14 +1,14 @@
 <?php $title = htmlspecialchars($postToDisplay->getTitle()) ;?>
 
 <?php ob_start(); ?>
-<p><a href="index.php?action=listPosts">Retour à la page d'accueil</a></p>
-<div>
-    <h3>
-        <?= htmlspecialchars($postToDisplay->getTitle()) ?>
-        <em>le <?= $postToDisplay->getCreationDate() ?> par <?= $postToDisplay->getAuthor()?></em>
-    </h3>
+
+<div class="card mt-3">
+    <div class="card-header d-flex justify-content-between">
+        <h3><?= htmlspecialchars($postToDisplay->getTitle()) ?></h3>
+        <a class="btn btn-primary" href="index.php?action=listPosts">Retour à la page d'accueil</a>
+    </div>
     
-    <p>
+    <div class="card-body">
         <?= $postToDisplay->getContent() ?>
         <br />
         <em>
@@ -20,44 +20,35 @@
             } 
             ?> 
         </em>
-    </p>
+    </div>
+    <div class="card-footer">
+        <em>le <?= $postToDisplay->getCreationDate() ?></em>
+    </div>
 </div>
 
-<p><a href="index.php?action=displayPost&id=<?=$postToDisplay->getId();?>&form=true">Ajouter un commentaire</a></p>
+<div class="card mt-3">
+    <div class="card-header">Commentaires</div>
+    <div class="card-body">
+        <?php foreach ($listComments as $comment): ?>   
+            <blockquote class="blockquote">
+                <p class="mb-0"><?= nl2br(htmlspecialchars($comment->getContent())) ?></p>
+                <footer class="blockquote-footer"><?= $comment->getAuthor()?></footer>
+            </blockquote>
 
-<?php
-    if (!isset($_GET['form']))
-    {
-        foreach ($listComments as $comment)
-        {
-?>
-            <div>
-                <h3>
-                    <?= htmlspecialchars($comment->getTitle()) ?>
-                    <em>le <?= $comment->getCreationDate() ?> par <?= $comment->getAuthor()?></em>
-                </h3>
-                
-                <p>
-                    <?= nl2br(htmlspecialchars($comment->getContent())) ?>
-                    <br />
-                </p>
-                <p><a href = "#" onclick="AreYouSure('report', 'index.php?action=displayPost&id=<?=$postToDisplay->getId();?>&commentId=<?= $comment->getId()?>&actionComment=report')">Signaler</a></p>
-            </div>
-
-<?php
-        }
-    }
-    elseif (isset($_GET['form']) && ($_GET['form'] == true))
-    {
-    ?>
+            <p><a href = "#" onclick="AreYouSure('report', 'index.php?action=displayPost&id=<?=$postToDisplay->getId();?>&commentId=<?= $comment->getId()?>&actionComment=report')">Signaler</a></p>
+        <?php endforeach;?>
+    </div>
+    
+    <div class="card-footer">        
         <form action="index.php?action=addComment&id=<?=$postToDisplay->getId();?>" method='post'>
-            <label for="author">Auteur : </label><input type="text" name="author" id="author" required/> <br />
-            <label for="title">Titre : </label><input type="text" name="title" id="title" required/> <br />
-            <label for="content">Commentaire : </label><textarea name="content" id="content" cols="30" rows="10" required></textarea> <br />
-            <input type="submit" value="Ajouter" />
+            <div class="form-group"><label for="author">Auteur : </label><input class="form-control" type="text" name="author" id="author" required/></div>
+            <div class="form-group"><label for="content">Commentaire : </label><textarea class="form-control" name="content" id="content" rows="5" required></textarea></div>
+            <button class="btn btn-primary" type="submit">Ajouter</button>
         </form>
+    </div>
+</div>
+
     <?php
-    }
 
     $content = ob_get_clean();
 
