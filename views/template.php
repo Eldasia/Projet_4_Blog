@@ -10,7 +10,7 @@
         
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3 shadow-lg">
-        <div class="container">
+        <div class="container d-flex justify-space-between">
             <a class="navbar-brand">Jean Forteroche</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -25,6 +25,11 @@
                     </li>
                 </ul>
             </div>
+            <?php if(isset($_SESSION['pseudo'])) : ?>
+            <div>
+                <a class="btn btn-danger" href="admin.php?action=logout">Déconnexion</a>
+            </div>
+            <?php endif; ?>
         </div>
     </nav>
         <div class="container">

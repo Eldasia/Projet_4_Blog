@@ -32,6 +32,14 @@
   </tbody>
 </table>
 
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-2" role="group">
+    <?php for ($i = 1; $i <= $nb_page_posts; $i++): ?>
+        <a type="button" href="admin.php?action=displayPosts&page=<?= $i ?>" class="btn btn-secondary"><?= $i ?></a>
+    <?php endfor; ?>
+    </div>
+</div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

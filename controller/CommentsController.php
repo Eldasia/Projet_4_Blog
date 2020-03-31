@@ -2,7 +2,6 @@
 
 namespace MaureenBruihier\Projet4\controller;
 
-use Exception;
 use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\entities\CommentEntity;
 
@@ -40,7 +39,7 @@ class CommentsController {
         }
         else
         {
-            throw new Exception('Aucune valeur de signalement valide.');
+            throw new \Exception('Aucune valeur de signalement valide.');
         }
         $listComments = array();
         while ($comment = $comments->fetch())
@@ -68,7 +67,7 @@ class CommentsController {
 
         if ($moderateComment == false)
         {
-            throw new Exception('Le signalement n\'a pas pu être effectué');
+            throw new \Exception('Le signalement n\'a pas pu être effectué');
         }
         else if ($postId == null)
         {

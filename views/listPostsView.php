@@ -28,11 +28,6 @@
     <?php endfor; ?>
     </div>
 </div>
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-
-    </ul>
-</nav>
 
 
 <?php $content = ob_get_clean(); ?>
