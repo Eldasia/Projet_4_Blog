@@ -5,7 +5,7 @@
 <div class="card mt-5">
     <div class="card-header d-flex justify-content-between">
         <h3><?= htmlspecialchars($postToDisplay->getTitle()) ?></h3>
-        <a class="btn btn-primary" href="index.php?action=listPosts">Retour à la page d'accueil</a>
+        <a class="btn btn-primary" href="/">Retour à la page d'accueil</a>
     </div>
     
     <div class="card-body">
@@ -37,7 +37,7 @@
     </div>
     
     <div class="card-footer">        
-        <form action="index.php?action=addComment&id=<?=$postToDisplay->getId();?>" method='post'>
+        <form action="/post/<?=$postToDisplay->getId();?>/comment" method='post'>
             <div class="form-group">
                 <label for="author">Auteur : </label>
                 <input class="form-control" type="text" name="author" id="author" required/>

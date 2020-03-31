@@ -9,9 +9,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "MaureenBruihier\\Projet4\\model\\": "model",
-            "MaureenBruihier\\Projet4\\model\\entities\\": "entities",
-            "MaureenBruihier\\Projet4\\controller\\": "controller"
+            "MaureenBruihier\\Projet4\\": "app"
         }
+    },
+    "require": {
+        "akibatech/router": "^1.0"
     }
 }

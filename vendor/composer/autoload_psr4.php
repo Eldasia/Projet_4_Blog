@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'MaureenBruihier\\Projet4\\model\\entities\\' => array($baseDir . '/entities'),
-    'MaureenBruihier\\Projet4\\model\\' => array($baseDir . '/model'),
-    'MaureenBruihier\\Projet4\\controller\\' => array($baseDir . '/controller'),
+    'MaureenBruihier\\Projet4\\' => array($baseDir . '/app'),
+    'Akibatech\\' => array($vendorDir . '/akibatech/router/src'),
 );

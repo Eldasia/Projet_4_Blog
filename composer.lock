@@ -1,0 +1,66 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "459dc8b3a2dc632d87e4f19c40a4293f",
+    "packages": [
+        {
+            "name": "akibatech/router",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MarceauKa/Router.git",
+                "reference": "2a6f508201e810427c33e7f1d4041026c2a41269"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MarceauKa/Router/zipball/2a6f508201e810427c33e7f1d4041026c2a41269",
+                "reference": "2a6f508201e810427c33e7f1d4041026c2a41269",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Akibatech\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MarceauKa",
+                    "email": "marceau@casals.fr"
+                }
+            ],
+            "description": "Routeur HTTP basique écrit en PHP sans aucune dépendance.",
+            "keywords": [
+                "Simple",
+                "http",
+                "library",
+                "rest",
+                "router",
+                "routes",
+                "routeur"
+            ],
+            "time": "2016-09-25T12:43:00+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

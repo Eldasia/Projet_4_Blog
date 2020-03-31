@@ -9,24 +9,22 @@ class ComposerStaticInitb53900daba798ed63237be67598b768d
     public static $prefixLengthsPsr4 = array (
         'M' => 
         array (
-            'MaureenBruihier\\Projet4\\model\\entities\\' => 39,
-            'MaureenBruihier\\Projet4\\model\\' => 30,
-            'MaureenBruihier\\Projet4\\controller\\' => 35,
+            'MaureenBruihier\\Projet4\\' => 24,
+        ),
+        'A' => 
+        array (
+            'Akibatech\\' => 10,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'MaureenBruihier\\Projet4\\model\\entities\\' => 
+        'MaureenBruihier\\Projet4\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/entities',
+            0 => __DIR__ . '/../..' . '/app',
         ),
-        'MaureenBruihier\\Projet4\\model\\' => 
+        'Akibatech\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/model',
-        ),
-        'MaureenBruihier\\Projet4\\controller\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/controller',
+            0 => __DIR__ . '/..' . '/akibatech/router/src',
         ),
     );
 

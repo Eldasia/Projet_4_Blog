@@ -1,10 +1,27 @@
 <?php
 require "vendor/autoload.php";
 
-use MaureenBruihier\Projet4\controller\PostsController;
-use MaureenBruihier\Projet4\controller\CommentsController;
+//use 
+//use MaureenBruihier\Projet4\controller\CommentsController;
 
-try
+$router = new Akibatech\Router;
+
+$router->get('/', 'MaureenBruihier\Projet4\controller\PostsController@listPosts');
+$router->get('/{:num}', 'MaureenBruihier\Projet4\controller\PostsController@listPosts');
+$router->post('/post/{:num}/comment', 'MaureenBruihier\Projet4\controller\CommentsController@addComment');
+$router->get('/post/{:num}', 'MaureenBruihier\Projet4\controller\PostsController@displayPost');
+
+$router->get('/post/{:num}/{:any}/{:num}', 'MaureenBruihier\Projet4\controller\CommentsController@moderateComment');
+
+$router->whenNotFound(function () {
+   var_dump($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+});
+
+$router->listen();
+
+exit;
+
+/*try
 {
     $postsController = new PostsController();
     $commentsController = new CommentsController();
@@ -68,3 +85,4 @@ catch (Exception $e)
     $errorMessage = $e->getMessage();
     require('views/errorView.php');
 }
+*/

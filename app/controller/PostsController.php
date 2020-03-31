@@ -17,10 +17,10 @@ class PostsController {
         $this->postManager = new PostManager();
     }
 
-    public function listPosts($firstPost, $isAdmin)
+    public function listPosts($offset = 0)
     {
         $nb_page_posts = $this->nbPage();
-        $posts = $this->postManager->getPosts($firstPost);
+        $posts = $this->postManager->getPosts($offset*5);
         $listPosts = array();
 
         while ($post = $posts->fetch())
@@ -28,28 +28,27 @@ class PostsController {
             $tmp = new PostEntity([ 'id'=>$post['id'], 'title'=>$post['title'], 'content'=>$post['content'], 'creationDate'=>$post['creation_date_fr'], 'changeDate'=>$post['change_date_fr']]);
             array_push($listPosts, $tmp);
         }
-        if ($isAdmin == 'false') 
-        {
-            require('views/listPostsView.php');
-        } 
-        elseif ($isAdmin == 'true') 
-        {
-            require('views/adminListPostsView.php');
-        }
-        else 
-        {
-            throw new \Exception('Argument invalide.');
-        }
+
+        require('views/listPostsView.php');
+        
+        // elseif ($isAdmin == 'true') 
+        // {
+        //     require('views/adminListPostsView.php');
+        // }
+        // else 
+        // {
+        //     throw new \Exception('Argument invalide.');
+        // }
         
     }
 
-    public function displayPost($postId, $isAdmin) 
+    public function displayPost($postId) 
     {   
         $post = $this->postManager->getPost($postId);
         $postToDisplay = new PostEntity([ 'id'=>$post['id'], 'title'=>$post['title'], 'content'=>$post['content'], 'creationDate'=>$post['creation_date_fr'], 'changeDate'=>$post['change_date_fr']]);
         
-        if ($isAdmin == 'false') 
-        {
+        // if ($isAdmin == 'false') 
+        // {
             $commentManager = new CommentManager();
             $comments = $commentManager->getCommentsPost($postId);
             $listComments = array();
@@ -59,15 +58,15 @@ class PostsController {
                 array_push($listComments, $tmp);
             }
             require('views/displayPostView.php');
-        }
-        elseif ($isAdmin == 'true')
-        {
-            require('views/updatePostView.php');
-        }
-        else
-        {
-            throw new \Exception('Argument invalide');
-        }
+        // }
+        // elseif ($isAdmin == 'true')
+        // {
+        //     require('views/updatePostView.php');
+        // }
+        // else
+        // {
+        //     throw new \Exception('Argument invalide');
+        // }
     }
 
     public function addPost($title, $content)

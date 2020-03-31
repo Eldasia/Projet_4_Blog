@@ -14,8 +14,8 @@ class CommentsController {
         $this->commentManager = new CommentManager();
     }
 
-    public function addCommment($postId, $author, $content) {
-        $commentToAdd = $this->commentManager->addComment($postId, $author, $content);
+    public function addCommment($postId) {
+        $commentToAdd = $this->commentManager->addComment($postId, $_POST['author'], $_POST['content']);
 
         if ($commentToAdd == false) 
         {
@@ -23,7 +23,7 @@ class CommentsController {
         }
         else 
         {
-            header('Location: index.php?action=displayPost&id=' . $postId);
+            header('Location: /post/' . $postId);
         }
     }
 
