@@ -10,7 +10,6 @@ $router->get('/', 'MaureenBruihier\Projet4\controller\PostsController@listPosts'
 $router->get('/{:num}', 'MaureenBruihier\Projet4\controller\PostsController@listPosts');
 $router->post('/post/{:num}/comment', 'MaureenBruihier\Projet4\controller\CommentsController@addComment');
 $router->get('/post/{:num}', 'MaureenBruihier\Projet4\controller\PostsController@displayPost');
-
 $router->get('/post/{:num}/{:any}/{:num}', 'MaureenBruihier\Projet4\controller\CommentsController@moderateComment');
 
 $router->whenNotFound(function () {
