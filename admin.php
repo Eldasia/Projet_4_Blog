@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require "vendor/autoload.php";
 
 use \MaureenBruihier\Projet4\controller\PostsController;
@@ -28,12 +26,6 @@ try
             }
 
             if (isset($_SESSION['pseudo'])) {
-
-                if ($_GET['action'] == 'logout') {
-                    session_destroy();
-                    header('Location: index.php');
-                }
-
                 if ($_GET['action'] == 'displayPosts') {
                     $postsController->listPosts($firstPost, 'true');
                 }

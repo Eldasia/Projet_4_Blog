@@ -11,25 +11,31 @@
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3 shadow-lg">
         <div class="container d-flex justify-space-between">
-            <a class="navbar-brand">Jean Forteroche</a>
+            <a href="/" class="navbar-brand">Jean Forteroche</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin.php">Admin</a>
+                        <a class="nav-link" href="/">Accueil</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ml-auto">
+                    <?php if (isset($_SESSION['pseudo'])): ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/dashboard">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Se casser</a>
+                    </li>
+                    <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Connexion</a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
             </div>
-            <?php if(isset($_SESSION['pseudo'])) : ?>
-            <div>
-                <a class="btn btn-danger" href="admin.php?action=logout">Déconnexion</a>
-            </div>
-            <?php endif; ?>
         </div>
     </nav>
         <div class="container">

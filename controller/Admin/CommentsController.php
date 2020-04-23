@@ -14,19 +14,29 @@ class CommentsController {
         $this->commentManager = new CommentManager();
     }
 
-    public function addCommment($postId, $author, $content) {
-        $commentToAdd = $this->commentManager->addComment($postId, $author, $content);
-
-        if ($commentToAdd == false) 
+    public function listComments($reportValue = 5)
+    {
+        if ($reportValue == 5)
         {
-            throw new \Exception('Votre commentaire n\'a pas pu être ajouté.');    
+            $comments = $this->commentManager->getComments();
         }
-        else 
+        elseif (0 < $reportValue && $reportValue < 4)
         {
-            header('Location: index.php?action=displayPost&id=' . $postId);
+            $comments = $this->commentManager->getCommentsReport($reportValue);
         }
+        else
+        {
+            throw new \Exception('Aucune valeur de signalement valide.');
+        }
+        $listComments = array();
+        while ($comment = $comments->fetch())
+        {
+            $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
+            array_push($listComments, $tmp);
+        }
+        require('views/adminListCommentsView.php');
     }
-    
+
     public function moderateComment($actionComment, $commentId, $postId = null)
     {
         switch ($actionComment) {

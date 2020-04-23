@@ -6,12 +6,6 @@ use MaureenBruihier\Projet4\model\Manager;
 
 class CommentManager extends Manager
 {
-
-    public function __construct()
-    {
-        $this->db = $this->dbConnect();
-    }
-
     public function getCommentsPost($postId)
     {
         $req = $this->db->prepare('SELECT id, post_id, author, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, reporting FROM comments  WHERE post_id = ? AND reporting = ? ORDER BY creation_date DESC');

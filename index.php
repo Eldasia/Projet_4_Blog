@@ -1,19 +1,18 @@
 <?php
-require "vendor/autoload.php";
 
+session_start();
+
+require 'vendor/autoload.php';
+require 'router.php';
+
+try {
+    $router->listen();
+} catch (\Exception $e) {
+    require 'views/error.php';
+}
+/*
 use MaureenBruihier\Projet4\controller\PostsController;
 use MaureenBruihier\Projet4\controller\CommentsController;
-
-try
-{
-    $postsController = new PostsController();
-    $commentsController = new CommentsController();
-
-    if (!isset($_GET['page']) OR empty($_GET['page'])) {
-        $_GET['page'] = 1;
-    }
-
-    $firstPost = (intval($_GET['page'])-1)*5;
 
     if (isset($_GET['action'])) 
     {
@@ -60,11 +59,5 @@ try
     {
         $postsController->listPosts($firstPost, 'false');
     }
-    
-}
-
-catch (Exception $e) 
-{
     $errorMessage = $e->getMessage();
     require('views/errorView.php');
-}

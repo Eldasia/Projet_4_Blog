@@ -1,6 +1,6 @@
 <?php
 
-namespace MaureenBruihier\Projet4\controller;
+namespace MaureenBruihier\Projet4\Controller\Admin;
 
 use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\PostManager;
@@ -26,7 +26,7 @@ class PostsController {
             array_push($listPosts, $tmp);
         }
 
-        require('views/front/posts.php');
+        require('views/listPostsView.php');
     }
 
     public function show($postId) 
@@ -50,6 +50,48 @@ class PostsController {
             array_push($listComments, $tmp);
         }
 
-        require('views/front/post-show.php');
+        require('views/displayPostView.php');
+    }
+
+    public function addPost($title, $content)
+    {
+        $postToAdd = $this->postManager->addPost($title, $content);
+
+        if ($postToAdd == false) 
+        {
+            throw new \Exception('Votre article n\'a pas pu être ajouté.');    
+        }
+        else 
+        {
+            header('Location: admin.php?result=3');
+        }
+    }
+
+    public function updatePost($postId, $title, $content)
+    {
+        $postToUpdate = $this->postManager->updatePost($postId, $title, $content);
+
+        if ($postToUpdate == false) 
+        {
+            throw new \Exception('Votre article n\'a pas pu être modifié.');    
+        }
+        else 
+        {
+            header('Location: admin.php?result=1');
+        }
+    }
+
+    public function deletePost($postId)
+    {
+        $postToDelete = $this->postManager->deletePost($postId);
+
+        if ($postToDelete == false) 
+        {
+            throw new \Exception('Votre article n\'a pas pu être supprimé.');    
+        }
+        else 
+        {
+            header('Location: admin.php?result=2');
+        }
     }
 }
