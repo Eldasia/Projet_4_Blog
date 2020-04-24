@@ -14,7 +14,7 @@ class CommentsController {
         $this->commentManager = new CommentManager();
     }
 
-    public function list($reportValue = 5)
+    public function listComments($reportValue = 5)
     {
         if ($reportValue == 5)
         {
@@ -42,6 +42,9 @@ class CommentsController {
         switch ($actionComment) {
             case 'validate':
                 $moderateValue = 2;
+                break;
+            case 'report':
+                $moderateValue = 3;
                 break;
             case 'refuse':
                 $moderateValue = 1;

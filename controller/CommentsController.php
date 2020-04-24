@@ -14,10 +14,7 @@ class CommentsController {
         $this->commentManager = new CommentManager();
     }
 
-    public function add($postId) {
-        $author = $_POST['author'];
-        $content = $_POST['content'];
-
+    public function addCommment($postId, $author, $content) {
         $commentToAdd = $this->commentManager->addComment($postId, $author, $content);
 
         if ($commentToAdd == false) 
@@ -26,21 +23,36 @@ class CommentsController {
         }
         else 
         {
-            header('Location: /post/'. $postId);
+            header('Location: index.php?action=displayPost&id=' . $postId);
         }
     }
     
-    public function report($postId, $commentId)
+    public function moderateComment($actionComment, $commentId, $postId = null)
     {
-        $report = $this->commentManager->moderateComment(3, $commentId);
+        switch ($actionComment) {
+            case 'validate':
+                $moderateValue = 2;
+                break;
+            case 'report':
+                $moderateValue = 3;
+                break;
+            case 'refuse':
+                $moderateValue = 1;
+                break;
+        }
+        $moderateComment = $this->commentManager->moderateComment($moderateValue, $commentId);
 
-        if ($report == false)
+        if ($moderateComment == false)
         {
             throw new \Exception('Le signalement n\'a pas pu être effectué');
         }
+        else if ($postId == null)
+        {
+            header('Location: admin.php?action=displayComments');
+        }
         else
         {
-            header('Location: /post/'. $postId);
+            header('Location: index.php?action=displayPost&id=' . $postId);
         }
     }
 }
