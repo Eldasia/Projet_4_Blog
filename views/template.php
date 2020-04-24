@@ -41,6 +41,6 @@
         <div class="container">
             <?= $content ?>
         </div>
-        <script src="public/js/AreYouSure.js"></script>
+        <script src="../public/js/AreYouSure.js"></script>
     </body>
 </html>

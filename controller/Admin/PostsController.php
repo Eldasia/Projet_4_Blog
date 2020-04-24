@@ -21,7 +21,8 @@ class PostsController {
         $posts = $this->postManager->getPosts();
         $listPosts = array();
 
-        while ($post = $posts->fetch()) {
+        while ($post = $posts->fetch()) 
+        {
             $tmp = new PostEntity([ 'id'=>$post['id'], 'title'=>$post['title'], 'content'=>$post['content'], 'creationDate'=>$post['creation_date_fr'], 'changeDate'=>$post['change_date_fr']]);
             array_push($listPosts, $tmp);
         }
