@@ -9,8 +9,8 @@
 
 <div class="card my-4">
     <div class="card-body">
-        <a class="btn btn-lg btn-outline-info btn-block" href="/admin/posts">Les articles</a>
-        <a class="btn btn-lg btn-outline-info btn-block" href="/admin/comments">Les commentaires</a>
+        <a class="btn btn-lg btn-outline-info btn-block" href="/adm/posts">Les articles</a>
+        <a class="btn btn-lg btn-outline-info btn-block" href="/adm/comments">Les commentaires</a>
     </div>
 </div>
 

@@ -13,7 +13,7 @@ class Manager
 
     protected function dbConnect()
     {
-        $db = new \PDO('mysql:host=localhost;dbname=blog_maureen;charset=utf8', 'root', 'root');
+        $db = new \PDO('mysql:host=localhost;dbname=blog_ecrivain;charset=utf8', 'root');
         return $db;
     }
 }

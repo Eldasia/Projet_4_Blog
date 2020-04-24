@@ -24,7 +24,7 @@
                 <ul class="navbar-nav ml-auto">
                     <?php if (isset($_SESSION['pseudo'])): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/dashboard">Admin</a>
+                        <a class="nav-link" href="/adm/dashboard">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Se casser</a>
@@ -41,6 +41,6 @@
         <div class="container">
             <?= $content ?>
         </div>
-        <script src="public/js/AreYouSure.js"></script>
+        <script src="../public/js/AreYouSure.js"></script>
     </body>
 </html>

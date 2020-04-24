@@ -1,6 +1,6 @@
 <?php
 
-namespace MaureenBruihier\Projet4\controller;
+namespace MaureenBruihier\Projet4\controller\Admin;
 
 use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\entities\CommentEntity;
@@ -14,7 +14,7 @@ class CommentsController {
         $this->commentManager = new CommentManager();
     }
 
-    public function listComments($reportValue = 5)
+    public function list($reportValue = 5)
     {
         if ($reportValue == 5)
         {
@@ -34,35 +34,35 @@ class CommentsController {
             $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
             array_push($listComments, $tmp);
         }
-        require('views/adminListCommentsView.php');
+        require('views/admin/comments.php');
     }
 
-    public function moderateComment($actionComment, $commentId, $postId = null)
-    {
-        switch ($actionComment) {
-            case 'validate':
-                $moderateValue = 2;
-                break;
-            case 'report':
-                $moderateValue = 3;
-                break;
-            case 'refuse':
-                $moderateValue = 1;
-                break;
-        }
-        $moderateComment = $this->commentManager->moderateComment($moderateValue, $commentId);
+    public function validate($commentId) {
+        
+        $moderateComment = $this->commentManager->moderateComment(2, $commentId);
 
         if ($moderateComment == false)
         {
-            throw new \Exception('Le signalement n\'a pas pu être effectué');
-        }
-        else if ($postId == null)
-        {
-            header('Location: admin.php?action=displayComments');
+            throw new \Exception('La validation n\'a pas pu être effectué');
         }
         else
         {
-            header('Location: index.php?action=displayPost&id=' . $postId);
+            header('Location: /adm/comments');
+        }
+    }
+
+
+    public function refuse($commentId)
+    {
+        $moderateComment = $this->commentManager->moderateComment(1, $commentId);
+
+        if ($moderateComment == false)
+        {
+            throw new \Exception('Le refus n\'a pas pu être effectué');
+        }
+        else
+        {
+            header('Location: /adm/comments');
         }
     }
 }

@@ -36,12 +36,12 @@
                 <footer class="blockquote-footer"><?= $comment->getAuthor()?></footer>
             </blockquote>
 
-            <p><a href = "#" onclick="AreYouSure('report', 'index.php?action=displayPost&id=<?=$postToDisplay->getId();?>&commentId=<?= $comment->getId()?>&actionComment=report')">Signaler</a></p>
+            <p><a href = "#" onclick="AreYouSure('report', '/post/<?=$postToDisplay->getId();?>/report/<?= $comment->getId()?>')">Signaler</a></p>
         <?php endforeach;?>
     </div>
     
     <div class="card-footer">        
-        <form action="index.php?action=addComment&id=<?=$postToDisplay->getId();?>" method='post'>
+        <form action="/post/<?=$postToDisplay->getId();?>/addComment" method='post'>
             <div class="form-group">
                 <label for="author">Auteur : </label>
                 <input class="form-control" type="text" name="author" id="author" required/>

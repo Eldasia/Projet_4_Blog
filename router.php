@@ -15,8 +15,18 @@ $router->get('/logout', 'MaureenBruihier\Projet4\controller\AuthController@logou
 
 // Routes admins
 $router->get('/adm/dashboard', 'MaureenBruihier\Projet4\controller\Admin\AdminController@dashboard');
+
 $router->get('/adm/posts', 'MaureenBruihier\Projet4\controller\Admin\PostsController@list');
+$router->get('/adm/addPost', 'MaureenBruihier\Projet4\controller\Admin\PostsController@addForm');
+$router->post('/adm/addPost', 'MaureenBruihier\Projet4\controller\Admin\PostsController@add');
+$router->get('/adm/updatePost/{:num}', 'MaureenBruihier\Projet4\controller\Admin\PostsController@updateForm');
+$router->post('/adm/updatePost/{:num}', 'MaureenBruihier\Projet4\controller\Admin\PostsController@update');
+$router->get('/adm/deletePost/{:num}', 'MaureenBruihier\Projet4\controller\Admin\PostsController@delete');
+
 $router->get('/adm/comments', 'MaureenBruihier\Projet4\controller\Admin\CommentsController@list');
+$router->get('/adm/comments?reportValue={:num}', 'MaureenBruihier\Projet4\controller\Admin\CommentsController@list');
+$router->get('/adm/comments/{:num}/validate', 'MaureenBruihier\Projet4\controller\Admin\CommentsController@validate');
+$router->get('/adm/comments/{:num}/refuse', 'MaureenBruihier\Projet4\controller\Admin\CommentsController@refuse');
 
 // Route par défaut
 $router->whenNotFound(function () {

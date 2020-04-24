@@ -26,10 +26,30 @@ class PostsController {
             array_push($listPosts, $tmp);
         }
 
-        require('views/listPostsView.php');
+        require('views/admin/posts.php');
     }
 
-    public function show($postId) 
+    public function addForm() {
+        require('views/admin/post-add.php');
+    }
+
+    public function add() {
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+
+        $postToAdd = $this->postManager->addPost($title, $content);
+
+        if ($postToAdd == false) 
+        {
+            throw new \Exception('Votre article n\'a pas pu être ajouté.');    
+        }
+        else 
+        {
+            header('Location: /adm/dashboard');
+        }
+    }
+
+    public function updateForm($postId) 
     {   
         $post = $this->postManager->getPost($postId);
         $postToDisplay = new PostEntity([
@@ -39,36 +59,14 @@ class PostsController {
             'creationDate'=>$post['creation_date_fr'],
             'changeDate'=>$post['change_date_fr']
         ]);
-        
-        $commentManager = new CommentManager();
-        $comments = $commentManager->getCommentsPost($postId);
-        $listComments = array();
 
-        while ($comment = $comments->fetch())
-        {
-            $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
-            array_push($listComments, $tmp);
-        }
-
-        require('views/displayPostView.php');
+        require('views/admin/post-update.php');
     }
 
-    public function addPost($title, $content)
-    {
-        $postToAdd = $this->postManager->addPost($title, $content);
-
-        if ($postToAdd == false) 
-        {
-            throw new \Exception('Votre article n\'a pas pu être ajouté.');    
-        }
-        else 
-        {
-            header('Location: admin.php?result=3');
-        }
-    }
-
-    public function updatePost($postId, $title, $content)
-    {
+    public function update($postId) {
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+    
         $postToUpdate = $this->postManager->updatePost($postId, $title, $content);
 
         if ($postToUpdate == false) 
@@ -77,11 +75,11 @@ class PostsController {
         }
         else 
         {
-            header('Location: admin.php?result=1');
+            header('Location: /adm/dashboard');
         }
     }
 
-    public function deletePost($postId)
+    public function delete($postId)
     {
         $postToDelete = $this->postManager->deletePost($postId);
 
@@ -91,7 +89,7 @@ class PostsController {
         }
         else 
         {
-            header('Location: admin.php?result=2');
+            header('Location: /adm/dashboard');
         }
     }
 }

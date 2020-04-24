@@ -4,7 +4,7 @@
 <h1>Ajouter un article :</h1>
 <p><a href="admin.php">Retour à l'interface administrateur</a></p>
 
-<form action="admin.php?action=save&id=<?=$postToDisplay->getId()?>" method='post'>
+<form action="/adm/updatePost/<?=$postToDisplay->getId()?>" method='post'>
     <label for="title">Titre :</label>
     <input type="text" name="title" required value="<?=$postToDisplay->getTitle()?>"/> <br />
     <label for="content">Contenu :</label> <br />
@@ -21,4 +21,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('views/template.php'); ?>

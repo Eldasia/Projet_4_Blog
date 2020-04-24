@@ -33,7 +33,7 @@ class AuthController {
         
         unset($_SESSION['error']);
         $_SESSION['pseudo'] = $pseudo;
-        header('Location: /admin/dashboard');
+        header('Location: /adm/dashboard');
     }
 
     public function logout()
