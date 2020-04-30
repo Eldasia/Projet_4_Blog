@@ -3,6 +3,7 @@
 namespace MaureenBruihier\Projet4\controller;
 
 use \MaureenBruihier\Projet4\model\AdminManager;
+use \MaureenBruihier\Projet4\lib\View;
 
 class AuthController {
     protected $adminManager;
@@ -14,7 +15,9 @@ class AuthController {
 
     public function loginForm()
     {
-        require('views/front/login.php');
+        return View::make('front/login', [
+            'title' => 'Connexion',
+        ]);
     }
 
     public function loginPost()

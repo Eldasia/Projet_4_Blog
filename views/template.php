@@ -27,7 +27,7 @@
                         <a class="nav-link" href="/adm/dashboard">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Se casser</a>
+                        <a class="nav-link" href="/logout">Déconnexion</a>
                     </li>
                     <?php else: ?>
                     <li class="nav-item">

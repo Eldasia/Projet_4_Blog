@@ -10,11 +10,8 @@ class ComposerStaticInitb53900daba798ed63237be67598b768d
         'M' => 
         array (
             'MaureenBruihier\\Projet4\\model\\' => 30,
+            'MaureenBruihier\\Projet4\\lib\\' => 28,
             'MaureenBruihier\\Projet4\\controller\\' => 35,
-        ),
-        'A' => 
-        array (
-            'Akibatech\\' => 10,
         ),
     );
 
@@ -23,13 +20,13 @@ class ComposerStaticInitb53900daba798ed63237be67598b768d
         array (
             0 => __DIR__ . '/../..' . '/model',
         ),
+        'MaureenBruihier\\Projet4\\lib\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib',
+        ),
         'MaureenBruihier\\Projet4\\controller\\' => 
         array (
             0 => __DIR__ . '/../..' . '/controller',
-        ),
-        'Akibatech\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/akibatech/router/src',
         ),
     );
 

@@ -1,7 +1,3 @@
-<?php $title = htmlspecialchars($postToDisplay->getTitle()) ;?>
-
-<?php ob_start(); ?>
-
 <div class="card mt-5">
     <div class="card-header d-flex justify-content-between">
         <h3><?= htmlspecialchars($postToDisplay->getTitle()) ?></h3>
@@ -54,9 +50,3 @@
         </form>
     </div>
 </div>
-
-    <?php
-
-    $content = ob_get_clean();
-
-    require('views/template.php'); ?>

@@ -1,7 +1,3 @@
-<?php $title = "Connexion"; ?>
-
-<?php ob_start(); ?>
-
 <div class="card mt-5">
   <div class="card-header d-flex justify-content-between">
     <h2>Connexion</h2>
@@ -31,7 +27,3 @@
     </form>
   </div>
 </div>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('views/template.php'); ?>

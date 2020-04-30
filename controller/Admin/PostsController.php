@@ -2,10 +2,9 @@
 
 namespace MaureenBruihier\Projet4\Controller\Admin;
 
-use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\PostManager;
 use \MaureenBruihier\Projet4\model\entities\PostEntity;
-use \MaureenBruihier\Projet4\model\entities\CommentEntity;
+use \MaureenBruihier\Projet4\lib\View;
 
 class PostsController {
 
@@ -16,9 +15,11 @@ class PostsController {
         $this->postManager = new PostManager();
     }
 
-    public function list()
+    public function list($page = 1)
     {
-        $posts = $this->postManager->getPosts();
+        $count = $this->postManager->countPosts();
+        $nbPage = ceil($count[0] / 4);
+        $posts = $this->postManager->getPosts($page);
         $listPosts = array();
 
         while ($post = $posts->fetch()) {
@@ -26,11 +27,17 @@ class PostsController {
             array_push($listPosts, $tmp);
         }
 
-        require('views/admin/posts.php');
+        return View::make('admin/posts', [
+            'title' => 'Interface administrateur',
+            'listPosts' => $listPosts,
+            'nbPage' => $nbPage,
+        ]);
     }
 
     public function addForm() {
-        require('views/admin/post-add.php');
+        return View::make('admin/post-add', [
+            'title' => 'Ajouter un article',
+        ]);
     }
 
     public function add() {
@@ -52,7 +59,7 @@ class PostsController {
     public function updateForm($postId) 
     {   
         $post = $this->postManager->getPost($postId);
-        $postToDisplay = new PostEntity([
+        $postToUpdate = new PostEntity([
             'id'=>$post['id'],
             'title'=>$post['title'],
             'content'=>$post['content'],
@@ -60,7 +67,10 @@ class PostsController {
             'changeDate'=>$post['change_date_fr']
         ]);
 
-        require('views/admin/post-update.php');
+        return View::make('admin/post-update', [
+            'title' => 'Modifier un article',
+            'postToUpdate' => $postToUpdate,
+        ]);
     }
 
     public function update($postId) {

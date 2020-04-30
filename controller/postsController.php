@@ -6,6 +6,7 @@ use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\PostManager;
 use \MaureenBruihier\Projet4\model\entities\PostEntity;
 use \MaureenBruihier\Projet4\model\entities\CommentEntity;
+use \MaureenBruihier\Projet4\lib\View;
 
 class PostsController {
 
@@ -16,9 +17,11 @@ class PostsController {
         $this->postManager = new PostManager();
     }
 
-    public function list()
+    public function list($page = 1)
     {
-        $posts = $this->postManager->getPosts();
+        $count = $this->postManager->countPosts();
+        $nbPage = ceil($count[0] / 4);
+        $posts = $this->postManager->getPosts($page);
         $listPosts = array();
 
         while ($post = $posts->fetch()) {
@@ -26,7 +29,11 @@ class PostsController {
             array_push($listPosts, $tmp);
         }
 
-        require('views/front/posts.php');
+        return View::make('front/posts', [
+            'title' => 'Blog de Jean Forteroche',
+            'listPosts' => $listPosts,
+            'nbPage' => $nbPage,
+        ]);
     }
 
     public function show($postId) 
@@ -50,6 +57,10 @@ class PostsController {
             array_push($listComments, $tmp);
         }
 
-        require('views/front/post-show.php');
+        return View::make('front/post-show', [
+            'title' => htmlspecialchars($postToDisplay->getTitle()),
+            'postToDisplay' => $postToDisplay,
+            'listComments' => $listComments,
+        ]);
     }
 }

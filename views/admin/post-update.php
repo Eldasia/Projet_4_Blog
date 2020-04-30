@@ -1,16 +1,19 @@
-<?php $title = "Modifier un article"; ?>
+<div class="card mt-5">
+  <div class="card-header d-flex justify-content-between">
+    <h2>Modifier un article :</h2>
+    <p><a class="btn btn-primary" href="/adm/dashboard">Retour à l'interface administrateur</a></p>
+  </div>
 
-<?php ob_start(); ?>
-<h1>Ajouter un article :</h1>
-<p><a href="admin.php">Retour à l'interface administrateur</a></p>
-
-<form action="/adm/updatePost/<?=$postToDisplay->getId()?>" method='post'>
-    <label for="title">Titre :</label>
-    <input type="text" name="title" required value="<?=$postToDisplay->getTitle()?>"/> <br />
-    <label for="content">Contenu :</label> <br />
-    <textarea name="content" id="updateMytextarea"><?=$postToDisplay->getContent()?></textarea> <br />
-    <input type="submit" value="Modifier"/>
-</form>
+  <div class="card-body">
+    <form action="/adm/updatePost/<?=$postToUpdate->getId()?>" method='post'>
+        <label for="title">Titre :</label>
+        <input type="text" name="title" required value="<?=$postToUpdate->getTitle()?>"/> <br />
+        <label for="content">Contenu :</label> <br />
+        <textarea name="content" id="updateMytextarea"><?=$postToUpdate->getContent()?></textarea> <br />
+        <input type="submit" value="Modifier"/>
+    </form>
+  </div>
+</div>
 
 <script>
     tinymce.init({
@@ -18,7 +21,3 @@
       menubar: 'hidden'
     });
 </script>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('views/template.php'); ?>

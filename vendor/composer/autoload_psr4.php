@@ -7,6 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'MaureenBruihier\\Projet4\\model\\' => array($baseDir . '/model'),
+    'MaureenBruihier\\Projet4\\lib\\' => array($baseDir . '/lib'),
     'MaureenBruihier\\Projet4\\controller\\' => array($baseDir . '/controller'),
-    'Akibatech\\' => array($vendorDir . '/akibatech/router/src'),
 );

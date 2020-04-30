@@ -3,10 +3,11 @@
 session_start();
 
 require 'vendor/autoload.php';
-require 'router.php';
+require 'routes.php';
 
 try {
-    $router->listen();
+    $reponse = $router->listen();
+    echo $reponse;
 } catch (\Exception $e) {
     require 'views/error.php';
 }

@@ -1,7 +1,3 @@
-<?php $title = 'Administration des commentaires'?>
-
-<?php ob_start(); ?>
-
 <p><a class="btn btn-primary mt-4" href="/adm/dashboard">Retour à l'interface d'administration</a></p>
 
 <p class="text-center m-4 display-3">Les commentaires</p>
@@ -38,8 +34,3 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-
-<?php
-$content = ob_get_clean();
-
-require('views/template.php'); ?>

@@ -1,7 +1,3 @@
-<?php $title = "Interface administrateur"; ?>
-
-<?php ob_start(); ?>
-
 <a class="btn btn-primary mt-4" href="/adm/dashboard">Retour à l'interface d'administration</a>
 
 <p class="text-center m-4 display-3">Les articles</p>
@@ -32,6 +28,10 @@
   </tbody>
 </table>
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('views/template.php'); ?>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-2" role="group">
+    <?php foreach (range(1, $nbPage) as $i): ?>
+        <a type="button" href="/adm/posts/<?= $i ?>" class="btn btn-secondary"><?= $i ?></a>
+    <?php endforeach; ?>
+    </div>
+</div>

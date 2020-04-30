@@ -4,6 +4,7 @@ namespace MaureenBruihier\Projet4\controller\Admin;
 
 use \MaureenBruihier\Projet4\model\CommentManager;
 use \MaureenBruihier\Projet4\model\entities\CommentEntity;
+use \MaureenBruihier\Projet4\lib\View;
 
 class CommentsController {
 
@@ -34,7 +35,10 @@ class CommentsController {
             $tmp = new CommentEntity(['id'=>$comment['id'],'postId'=>$comment['post_id'], 'author'=>$comment['author'], 'content'=>$comment['content'], 'creationDate'=>$comment['creation_date_fr'], 'reporting'=>$comment['reporting']]);
             array_push($listComments, $tmp);
         }
-        require('views/admin/comments.php');
+        return View::make('admin/comments', [
+            'title' => 'Interface administrateur',
+            'listComments' => $listComments,
+        ]);
     }
 
     public function validate($commentId) {

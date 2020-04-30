@@ -1,6 +1,3 @@
-<?php $title = "Blog de Jean Forteroche"; ?>
-
-<?php ob_start(); ?>
 <p class="text-center m-5 display-2">Bienvenue sur le blog de Jean Forteroche</p>
 <p>Derniers billets du blog :</p>
 
@@ -23,13 +20,8 @@
 
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group mr-2" role="group">
-    <?php for ($i = 1; $i <= $nb_page_posts; $i++): ?>
+    <?php foreach (range(1, $nbPage) as $i): ?>
         <a type="button" href="/<?= $i ?>" class="btn btn-secondary"><?= $i ?></a>
-    <?php endfor; ?>
+    <?php endforeach; ?>
     </div>
 </div>
-
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('views/template.php'); ?>

@@ -1,9 +1,10 @@
 <?php
 
-$router = new Akibatech\Router;
+$router = new MaureenBruihier\Projet4\lib\Router;
 
 // Routes publiques
 $router->get('/', 'MaureenBruihier\Projet4\controller\PostsController@list', 'home');
+$router->get('/{:num}', 'MaureenBruihier\Projet4\controller\PostsController@list');
 $router->get('/post/{:num}', 'MaureenBruihier\Projet4\controller\PostsController@show', 'post.show');
 $router->get('/post/{:num}/report/{:num}', 'MaureenBruihier\Projet4\controller\CommentsController@report', 'comment.report');
 $router->post('/post/{:num}/addComment', 'MaureenBruihier\Projet4\controller\CommentsController@add', 'comment.add');
@@ -17,6 +18,7 @@ $router->get('/logout', 'MaureenBruihier\Projet4\controller\AuthController@logou
 $router->get('/adm/dashboard', 'MaureenBruihier\Projet4\controller\Admin\AdminController@dashboard');
 
 $router->get('/adm/posts', 'MaureenBruihier\Projet4\controller\Admin\PostsController@list');
+$router->get('/adm/posts/{:num}', 'MaureenBruihier\Projet4\controller\Admin\PostsController@list');
 $router->get('/adm/addPost', 'MaureenBruihier\Projet4\controller\Admin\PostsController@addForm');
 $router->post('/adm/addPost', 'MaureenBruihier\Projet4\controller\Admin\PostsController@add');
 $router->get('/adm/updatePost/{:num}', 'MaureenBruihier\Projet4\controller\Admin\PostsController@updateForm');

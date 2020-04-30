@@ -1,12 +1,9 @@
-<?php $title = "Ajouter un article"; ?>
-
-<?php ob_start(); ?>
-
 <div class="card mt-5">
   <div class="card-header d-flex justify-content-between">
     <h2>Ajouter un article :</h2>
     <a class="btn btn-primary" href="/adm/dashboard">Retour à l'interface administrateur</a>
   </div>
+  
   <div class="card-body">
     <form action="/adm/addPost" method='post'>
       <div class="form-group">
@@ -28,7 +25,3 @@
       menubar: 'hidden'
     });
   </script>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('views/template.php'); ?>
