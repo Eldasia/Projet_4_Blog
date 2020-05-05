@@ -1,7 +1,7 @@
 <div class="card mt-5">
   <div class="card-header d-flex justify-content-between">
-    <h2>Ajouter un article :</h2>
-    <a class="btn btn-primary" href="/adm/dashboard">Retour à l'interface administrateur</a>
+    <h2 class="mr-1">Ajouter un article :</h2>
+    <a class="btn btn-primary m-1" style="max-height: 90px;" href="/adm/dashboard">Retour à l'interface administrateur</a>
   </div>
   
   <div class="card-body">

@@ -28,7 +28,7 @@
 
         <?php foreach ($listComments as $comment): ?>   
             <blockquote class="blockquote">
-                <p class="mb-0"><?= nl2br(htmlspecialchars($comment->getContent())) ?></p>
+               <?= nl2br(htmlspecialchars($comment->getContent())) ?>
                 <footer class="blockquote-footer"><?= $comment->getAuthor()?></footer>
             </blockquote>
 

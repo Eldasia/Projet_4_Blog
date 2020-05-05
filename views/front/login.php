@@ -1,7 +1,7 @@
 <div class="card mt-5">
   <div class="card-header d-flex justify-content-between">
     <h2>Connexion</h2>
-    <a class="btn btn-primary" href="/">Retour à la page d'accueil</a>
+    <a class="btn btn-primary ml-3" href="/">Retour à la page d'accueil</a>
   </div>
   <div class="card-body">
     <?php if (isset($_SESSION['error'])): ?>

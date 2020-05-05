@@ -38,7 +38,7 @@
             </div>
         </div>
     </nav>
-        <div class="container">
+        <div class="container-sm">
             <?= $content ?>
         </div>
         <script src="../public/js/AreYouSure.js"></script>
