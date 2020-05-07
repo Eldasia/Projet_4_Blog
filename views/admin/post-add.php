@@ -8,7 +8,10 @@
     <form action="/adm/addPost" method='post'>
       <div class="form-group">
         <label for="title">Titre :</label>
-        <input type="text" name="title" required/> <br />
+        <input type="text" name="title" class="form-control" value="<?= $validation->getOldValue('title') ?>" required/>
+        <?php if ($validation->hasError('title')) : ?>
+          <span class="text-danger"><?= $validation->getError('title'); ?></span>
+        <?php endif; ?>
       </div>
       <div class="form-group">
         <label for="content">Contenu :</label> <br />

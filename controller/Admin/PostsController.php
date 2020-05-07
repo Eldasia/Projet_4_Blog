@@ -5,6 +5,7 @@ namespace MaureenBruihier\Projet4\Controller\Admin;
 use \MaureenBruihier\Projet4\model\PostManager;
 use \MaureenBruihier\Projet4\model\entities\PostEntity;
 use \MaureenBruihier\Projet4\lib\View;
+use \MaureenBruihier\Projet4\lib\Validation;
 
 class PostsController {
 
@@ -43,6 +44,24 @@ class PostsController {
     public function add() {
         $title = $_POST['title'];
         $content = $_POST['content'];
+
+        $validation = Validation::make($_POST, [
+            'title' => [
+                'required',
+                'min:6',
+                'max:100',
+            ],
+            'content' => [
+                'required',
+                'min:10',
+                'max:3000',
+            ],
+        ]);
+
+        if ($validation->isValid() == false) 
+        {
+            return $this->addForm();
+        } 
 
         $postToAdd = $this->postManager->addPost($title, $content);
 

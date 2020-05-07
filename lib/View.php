@@ -2,6 +2,8 @@
 
 namespace MaureenBruihier\Projet4\Lib;
 
+use MaureenBruihier\Projet4\lib\Validation;
+
 class View 
 {
     public $view;
@@ -12,6 +14,7 @@ class View
     {
         $this->view = 'views/' . $view . '.php';
         $this->params = $params;
+        $this->params['validation'] = Validation::$instance ?? new Validation;
     }
 
     public static function make($view, array $params = [])

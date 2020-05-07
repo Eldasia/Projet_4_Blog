@@ -9,5 +9,8 @@ try {
     $reponse = $router->listen();
     echo $reponse;
 } catch (\Exception $e) {
-    require 'views/error.php';
+    echo MaureenBruihier\Projet4\lib\View::make('error', [ 
+        'title' => 'Erreur serveur',
+        'e' => $e,
+        ]);
 }
