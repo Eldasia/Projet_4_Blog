@@ -45,11 +45,11 @@ class Validation
                     break;
 
                 case 'min' :
-                    return 'Le champ doit faire plus de ' . $param;
+                    return 'Le champ doit faire plus de ' . $param .  ' caractères.';
                     break;
 
                 case 'max' :
-                    return 'Le champ doit faire moins de ' . $param;
+                    return 'Le champ doit faire moins de ' . $param .  ' caractères.';
                     break;
                 
                 default :

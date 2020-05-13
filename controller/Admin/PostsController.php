@@ -45,7 +45,9 @@ class PostsController {
         $title = $_POST['title'];
         $content = $_POST['content'];
 
-        $validation = Validation::make($_POST, [
+        $inputWithoutHTML = ['title' => strip_tags($title), 'content' => strip_tags($content)];
+
+        $validation = Validation::make($inputWithoutHTML, [
             'title' => [
                 'required',
                 'min:6',
@@ -95,6 +97,26 @@ class PostsController {
     public function update($postId) {
         $title = $_POST['title'];
         $content = $_POST['content'];
+
+        $inputWithoutHTML = ['title' => strip_tags($title), 'content' => strip_tags($content)];
+
+        $validation = Validation::make($inputWithoutHTML, [
+            'title' => [
+                'required',
+                'min:6',
+                'max:100',
+            ],
+            'content' => [
+                'required',
+                'min:10',
+                'max:3000',
+            ],
+        ]);
+
+        if ($validation->isValid() == false) 
+        {
+            return $this->updateForm($postId);
+        } 
     
         $postToUpdate = $this->postManager->updatePost($postId, $title, $content);
 

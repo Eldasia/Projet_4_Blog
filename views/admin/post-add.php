@@ -15,7 +15,10 @@
       </div>
       <div class="form-group">
         <label for="content">Contenu :</label> <br />
-        <textarea name="content" id="addMytextarea"></textarea> <br />
+        <textarea name="content" id="addMytextarea"><?= $validation->getOldValue('content') ?></textarea> <br />
+        <?php if ($validation->hasError('content')) : ?>
+          <span class="text-danger"><?= $validation->getError('content'); ?></span>
+        <?php endif; ?>
       </div>
       <button class="btn btn-primary" type="submit">Ajouter</button>
     </form>
