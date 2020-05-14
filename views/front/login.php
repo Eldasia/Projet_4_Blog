@@ -14,6 +14,9 @@
           <div class="form-group">
             <label for="pseudo">Pseudo :</label>
             <input type="text" name="pseudo" class="form-control" required/>
+            <?php if ($validation->hasError('pseudo')) : ?>
+                  <span class="text-danger"><?= $validation->getError('pseudo'); ?></span> </br>
+            <?php endif; ?>
           </div>
         </div>
         <div class="col-12 col-sm-6">

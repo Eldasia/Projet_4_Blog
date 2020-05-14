@@ -1,4 +1,5 @@
 <?php
+use MaureenBruihier\Projet4\lib\View;
 
 $router = new MaureenBruihier\Projet4\lib\Router;
 
@@ -32,5 +33,5 @@ $router->get('/adm/comments/{:num}/refuse', 'MaureenBruihier\Projet4\controller\
 
 // Route par défaut
 $router->whenNotFound(function () {
-    require('views/404.php');
+    return View::make('404', [ 'title' => 'Erreur 404']);
 });

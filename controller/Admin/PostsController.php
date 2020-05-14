@@ -5,6 +5,7 @@ namespace MaureenBruihier\Projet4\Controller\Admin;
 use \MaureenBruihier\Projet4\model\PostManager;
 use \MaureenBruihier\Projet4\model\entities\PostEntity;
 use \MaureenBruihier\Projet4\lib\View;
+use \MaureenBruihier\Projet4\lib\Validation;
 
 class PostsController {
 
@@ -44,6 +45,26 @@ class PostsController {
         $title = $_POST['title'];
         $content = $_POST['content'];
 
+        $inputWithoutHTML = ['title' => strip_tags($title), 'content' => strip_tags($content)];
+
+        $validation = Validation::make($inputWithoutHTML, [
+            'title' => [
+                'required',
+                'min:6',
+                'max:100',
+            ],
+            'content' => [
+                'required',
+                'min:10',
+                'max:3000',
+            ],
+        ]);
+
+        if ($validation->isValid() == false) 
+        {
+            return $this->addForm();
+        } 
+
         $postToAdd = $this->postManager->addPost($title, $content);
 
         if ($postToAdd == false) 
@@ -76,6 +97,26 @@ class PostsController {
     public function update($postId) {
         $title = $_POST['title'];
         $content = $_POST['content'];
+
+        $inputWithoutHTML = ['title' => strip_tags($title), 'content' => strip_tags($content)];
+
+        $validation = Validation::make($inputWithoutHTML, [
+            'title' => [
+                'required',
+                'min:6',
+                'max:100',
+            ],
+            'content' => [
+                'required',
+                'min:10',
+                'max:3000',
+            ],
+        ]);
+
+        if ($validation->isValid() == false) 
+        {
+            return $this->updateForm($postId);
+        } 
     
         $postToUpdate = $this->postManager->updatePost($postId, $title, $content);
 

@@ -3,7 +3,7 @@
 namespace MaureenBruihier\Projet4\controller;
 
 use \MaureenBruihier\Projet4\model\CommentManager;
-use \MaureenBruihier\Projet4\model\entities\CommentEntity;
+use \MaureenBruihier\Projet4\lib\Validation;
 
 class CommentsController {
 
@@ -17,6 +17,26 @@ class CommentsController {
     public function add($postId) {
         $author = $_POST['author'];
         $content = $_POST['content'];
+
+        $inputWithoutHTML = ['author' => strip_tags($author), 'content' => strip_tags($content)];
+
+        $validation = Validation::make($inputWithoutHTML, [
+            'author' => [
+                'required',
+                'min:6',
+                'max:100',
+            ],
+            'content' => [
+                'required',
+                'min:10',
+                'max:3000',
+            ],
+        ]);
+
+        if ($validation->isValid() == false) 
+        {
+            $validation->redirectWithErrors('/post/' . $postId . '#commentaire');
+        }
 
         $commentToAdd = $this->commentManager->addComment($postId, $author, $content);
 

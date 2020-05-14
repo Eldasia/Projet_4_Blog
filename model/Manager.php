@@ -11,6 +11,11 @@ class Manager
         $this->db = $this->dbConnect();
     }
 
+    public function db()
+    {
+        return $this->db;
+    }
+
     protected function dbConnect()
     {
         $db = new \PDO('mysql:host=localhost;dbname=blog_ecrivain;charset=utf8', 'root');

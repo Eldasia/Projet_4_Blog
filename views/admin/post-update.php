@@ -6,10 +6,19 @@
 
   <div class="card-body">
     <form action="/adm/updatePost/<?=$postToUpdate->getId()?>" method='post'>
+
         <label for="title">Titre :</label>
         <input type="text" name="title" required value="<?=$postToUpdate->getTitle()?>"/> <br />
+        <?php if ($validation->hasError('title')) : ?>
+          <span class="text-danger"><?= $validation->getError('title'); ?></span> </br>
+        <?php endif; ?>
+
         <label for="content">Contenu :</label> <br />
         <textarea name="content" id="updateMytextarea"><?=$postToUpdate->getContent()?></textarea> <br />
+        <?php if ($validation->hasError('content')) : ?>
+          <span class="text-danger"><?= $validation->getError('content'); ?></span> </br>
+        <?php endif; ?>
+
         <input type="submit" value="Modifier"/>
     </form>
   </div>

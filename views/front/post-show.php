@@ -37,14 +37,20 @@
     </div>
     
     <div class="card-footer">        
-        <form action="/post/<?=$postToDisplay->getId();?>/addComment" method='post'>
+        <form action="/post/<?=$postToDisplay->getId();?>/addComment" method='post' id='commentaire'>
             <div class="form-group">
                 <label for="author">Auteur : </label>
-                <input class="form-control" type="text" name="author" id="author" required/>
+                <input class="form-control" type="text" name="author" id="author" value="<?= $validation->getOldValue('content') ?>"required/>
+                <?php if ($validation->hasError('author')) : ?>
+                    <span class="text-danger"><?= $validation->getError('author'); ?></span> </br>
+                <?php endif; ?>
             </div>
             <div class="form-group">
                 <label for="content">Commentaire : </label>
-                <textarea class="form-control" name="content" id="content" rows="5" required></textarea>
+                <textarea class="form-control" name="content" id="content" rows="5" required><?= $validation->getOldValue('content') ?></textarea>
+                <?php if ($validation->hasError('content')) : ?>
+                    <span class="text-danger"><?= $validation->getError('content'); ?></span> </br>
+                <?php endif; ?>
             </div>
             <button class="btn btn-primary" type="submit">Ajouter</button>
         </form>
