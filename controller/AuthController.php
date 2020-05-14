@@ -4,6 +4,7 @@ namespace MaureenBruihier\Projet4\controller;
 
 use \MaureenBruihier\Projet4\model\AdminManager;
 use \MaureenBruihier\Projet4\lib\View;
+use \MaureenBruihier\Projet4\lib\Validation;
 
 class AuthController {
     protected $adminManager;
@@ -24,6 +25,18 @@ class AuthController {
     {
         $pseudo = $_POST['pseudo'];
         $pass = $_POST['password'];
+
+        $validation = Validation::make($_POST, [
+            'pseudo' => [
+                'required',
+                'exist:admin,pseudo',
+            ],
+        ]);
+
+        if ($validation->isValid() == false) 
+        {
+            return $this->loginForm();
+        } 
 
         $resultat = $this->adminManager->login($pseudo);
         $isPasswordCorrect = password_verify($pass, $resultat['password']);

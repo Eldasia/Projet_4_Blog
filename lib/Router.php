@@ -105,7 +105,7 @@ class Router
             return $this->getIndexedRoute($index);
         }
 
-        throw new \RuntimeException("Aucune route nommée $route");
+        throw new \RuntimeException("Aucune route nommée $name");
     }
 
     public function getIndexedRoute($index)

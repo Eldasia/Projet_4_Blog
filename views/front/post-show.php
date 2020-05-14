@@ -37,7 +37,7 @@
     </div>
     
     <div class="card-footer">        
-        <form action="/post/<?=$postToDisplay->getId();?>/addComment" method='post'>
+        <form action="/post/<?=$postToDisplay->getId();?>/addComment" method='post' id='commentaire'>
             <div class="form-group">
                 <label for="author">Auteur : </label>
                 <input class="form-control" type="text" name="author" id="author" value="<?= $validation->getOldValue('content') ?>"required/>

@@ -2,6 +2,8 @@
 
 namespace MaureenBruihier\Projet4\Lib;
 
+use \MaureenBruihier\Projet4\model\Manager;
+
 class Validation 
 {
     public static $instance;
@@ -13,6 +15,11 @@ class Validation
     {
         $this->data = $data;
         $this->rules = $rules;
+        if (isset($_SESSION['validation_errors']) AND !empty($_SESSION['validation_errors']))
+        {
+            $this->errors = $_SESSION['validation_errors'];
+            unset($_SESSION['validation_errors']);
+        }
     }
 
     public static function make(array $data, array $rules) 
@@ -23,6 +30,13 @@ class Validation
         }
 
         return self::$instance;
+    }
+
+    public function redirectWithErrors(string $location) : void
+    {
+        $_SESSION['validation_errors'] = $this->errors;
+        header('Location: ' . $location);
+        exit;
     }
 
     public function hasError(string $key) : bool
@@ -36,7 +50,7 @@ class Validation
         {
             $parts = explode(':', $this->errors[$key][0]);
             $rule = $parts[0];
-            $param = $parts[1];
+            $param = isset($parts[1]) ? $parts[1] : null;
 
             switch ($rule) 
             {
@@ -51,6 +65,9 @@ class Validation
                 case 'max' :
                     return 'Le champ doit faire moins de ' . $param .  ' caractères.';
                     break;
+
+                case 'exist' :
+                    return 'Le champ n\'existe pas.';
                 
                 default :
                     return 'Erreur inconnue.';
@@ -75,7 +92,10 @@ class Validation
     {
         foreach ($this->data as $key=>$value)
         {
-            $this->validateAttr($key, $value);
+            if (array_key_exists($key, $this->rules))
+            {
+                $this->validateAttr($key, $value);
+            }
         }
 
         return count($this->errors) == 0;
@@ -122,6 +142,19 @@ class Validation
     protected function ruleMax($value, $param) : bool
     {
         return strlen($value) <= $param;
+    }
+
+    protected function ruleExist($value, $param) : bool
+    {
+        $params = explode(',', $param);
+
+        $db = (new Manager)->db();
+        $req = $db->prepare('SELECT COUNT(*) FROM ? WHERE ? = ? LIMIT 1');
+        $req->execute([$params[0], $params[1], $value]);
+
+        $count = $req->fetch();
+
+        return $count == 1;
     }
 
 }

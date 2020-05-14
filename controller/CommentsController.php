@@ -35,8 +35,8 @@ class CommentsController {
 
         if ($validation->isValid() == false) 
         {
-            header('Location: /post/' . $postId);
-        } 
+            $validation->redirectWithErrors('/post/' . $postId . '#commentaire');
+        }
 
         $commentToAdd = $this->commentManager->addComment($postId, $author, $content);
 
