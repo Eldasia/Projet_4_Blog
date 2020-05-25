@@ -281,7 +281,7 @@ class Validation
      * Renvoie true si il est dans la BDD
      *
      * @param  mixed $value Valeur du champ à valider
-     * @param  mixed $param Paramètre de la règle
+     * @param  mixed $param Paramètre de la règle (table,colonne)
      * 
      * @return bool
      */
@@ -290,14 +290,31 @@ class Validation
         $params = explode(',', $param);
 
         $db = (new Manager)->db();
-        $req = $db->prepare('SELECT COUNT(*) FROM ? WHERE ? = ? LIMIT 1');
+        $req = $db->prepare("SELECT COUNT(*) FROM ? WHERE ? = ? LIMIT 1");
         $req->execute([$params[0], $params[1], $value]);
+
+        $req->debugDumpParams();
 
         $count = $req->fetch();
 
+        var_dump($params[0]);
+        var_dump($params[1]);
+        var_dump($value);
+        var_dump($count == 1);
+        exit;
+
         return $count == 1;
     }
-
+    
+    /**
+     * ruleToken
+     *
+     * Vérifie la validité du token
+     * 
+     * @param  mixed $value
+     * 
+     * @return bool
+     */
     protected function ruleToken($value) : bool
     {
         return Token::make()->verify($value);

@@ -19,6 +19,11 @@
           <span class="text-danger"><?= $validation->getError('content'); ?></span> </br>
         <?php endif; ?>
 
+        <?= $token->input() ?>
+        <?php if ($validation->hasError('_token')) : ?>
+            <span class="text-danger"><?= $validation->getError('_token'); ?></span> </br>
+        <?php endif; ?>
+
         <input type="submit" value="Modifier"/>
     </form>
   </div>

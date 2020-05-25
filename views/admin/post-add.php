@@ -20,6 +20,12 @@
           <span class="text-danger"><?= $validation->getError('content'); ?></span>
         <?php endif; ?>
       </div>
+
+      <?= $token->input() ?>
+      <?php if ($validation->hasError('_token')) : ?>
+          <span class="text-danger"><?= $validation->getError('_token'); ?></span> </br>
+      <?php endif; ?>
+      
       <button class="btn btn-primary" type="submit">Ajouter</button>
     </form>
   </div>
