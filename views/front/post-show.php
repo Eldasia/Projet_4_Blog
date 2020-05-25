@@ -38,6 +38,7 @@
     
     <div class="card-footer">        
         <form action="/post/<?=$postToDisplay->getId();?>/addComment" method='post' id='commentaire'>
+
             <div class="form-group">
                 <label for="author">Auteur : </label>
                 <input class="form-control" type="text" name="author" id="author" value="<?= $validation->getOldValue('content') ?>"required/>
@@ -45,6 +46,7 @@
                     <span class="text-danger"><?= $validation->getError('author'); ?></span> </br>
                 <?php endif; ?>
             </div>
+
             <div class="form-group">
                 <label for="content">Commentaire : </label>
                 <textarea class="form-control" name="content" id="content" rows="5" required><?= $validation->getOldValue('content') ?></textarea>
@@ -52,6 +54,12 @@
                     <span class="text-danger"><?= $validation->getError('content'); ?></span> </br>
                 <?php endif; ?>
             </div>
+
+            <?= $token->input() ?>
+            <?php if ($validation->hasError('_token')) : ?>
+                <span class="text-danger"><?= $validation->getError('_token'); ?></span> </br>
+            <?php endif; ?>
+
             <button class="btn btn-primary" type="submit">Ajouter</button>
         </form>
     </div>

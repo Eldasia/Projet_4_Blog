@@ -3,6 +3,7 @@
 namespace MaureenBruihier\Projet4\Lib;
 
 use \MaureenBruihier\Projet4\model\Manager;
+use MaureenBruihier\Projet4\lib\Token;
 
 /**
  * La classe Validation permet de gérer la vérification d'un formulaire
@@ -21,6 +22,13 @@ class Validation
     {
         $this->data = $data;
         $this->rules = $rules;
+
+        if (isset($_POST['_token']))
+        {
+            $this->data['_token'] = $_POST['_token'];
+            $this->rules['_token'] = 'token';
+        }
+
         if (isset($_SESSION['validation_errors']) AND !empty($_SESSION['validation_errors']))
         {
             $this->errors = $_SESSION['validation_errors'];
@@ -51,7 +59,7 @@ class Validation
     /**
      * redirectWithErrors
      *
-     * Permet une redirection en gardant le message d'erreur pour pouvoir l'afficher
+     * Stocke les messages d'erreurs en session et redirige le navigateur
      * 
      * @param  string $location Lien vers la page de redirection
      * 
@@ -114,6 +122,11 @@ class Validation
 
                 case 'exist' :
                     return 'Le champ n\'existe pas.';
+                    break;
+
+                case 'token' :
+                    return 'La session a expirée.';
+                    break;
                 
                 default :
                     return 'Erreur inconnue.';
@@ -179,7 +192,9 @@ class Validation
      */
     protected function validateAttr($attr, $value) : void
     {
-        foreach ($this->rules[$attr] as $rule)
+        $rules = is_array($this->rules[$attr]) ? $this->rules[$attr] : [$this->rules[$attr]];
+
+        foreach ($rules as $rule)
         {
             if ($this->rule($rule, $value) == false)
             {
@@ -281,6 +296,11 @@ class Validation
         $count = $req->fetch();
 
         return $count == 1;
+    }
+
+    protected function ruleToken($value) : bool
+    {
+        return Token::make()->verify($value);
     }
 
 }

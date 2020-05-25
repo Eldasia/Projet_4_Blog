@@ -3,6 +3,7 @@
 namespace MaureenBruihier\Projet4\Lib;
 
 use MaureenBruihier\Projet4\lib\Validation;
+use MaureenBruihier\Projet4\lib\Token;
 
 /**
  * La classe Views permet de gérer les vues sur un projet et de les appeler si besoin
@@ -22,6 +23,7 @@ class View
         $this->view = 'views/' . $view . '.php';
         $this->params = $params;
         $this->params['validation'] = Validation::$instance ?? new Validation;
+        $this->params['token'] = Token::make();
     }
     
     /**
