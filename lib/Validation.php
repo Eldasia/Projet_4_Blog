@@ -290,20 +290,10 @@ class Validation
         $params = explode(',', $param);
 
         $db = (new Manager)->db();
-        $req = $db->prepare("SELECT COUNT(*) FROM ? WHERE ? = ? LIMIT 1");
-        $req->execute([$params[0], $params[1], $value]);
+        $req = $db->prepare(sprintf("SELECT COUNT(*) FROM %s WHERE %s = ? LIMIT 1", $params[0], $params[1]));
+        $req->execute([$value]);
 
-        $req->debugDumpParams();
-
-        $count = $req->fetch();
-
-        var_dump($params[0]);
-        var_dump($params[1]);
-        var_dump($value);
-        var_dump($count == 1);
-        exit;
-
-        return $count == 1;
+        return $req->rowCount() == 1;
     }
     
     /**
