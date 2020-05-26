@@ -205,6 +205,11 @@ class Validation
 
         return;
     }
+
+    protected function clean($value) 
+    {
+        return preg_replace('#(\s{2,}|\n{2,})#m', '', $value);
+    }
     
     /**
      * rule
@@ -256,7 +261,7 @@ class Validation
      */
     protected function ruleMin($value, $param) : bool
     {
-        return strlen($value) >= $param;
+        return strlen($this->clean($value)) >= $param;
     }
     
     /**
@@ -271,7 +276,7 @@ class Validation
      */
     protected function ruleMax($value, $param) : bool
     {
-        return strlen($value) <= $param;
+        return strlen($this->clean($value)) <= $param;
     }
     
     /**

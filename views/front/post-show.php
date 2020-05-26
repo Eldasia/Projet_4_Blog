@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label for="author">Auteur : </label>
-                <input class="form-control" type="text" name="author" id="author" value="<?= $validation->getOldValue('content') ?>"required/>
+                <input class="form-control" type="text" name="author" id="author" value="<?= $validation->getOldValue('author') ?>"required/>
                 <?php if ($validation->hasError('author')) : ?>
                     <span class="text-danger"><?= $validation->getError('author'); ?></span> </br>
                 <?php endif; ?>
