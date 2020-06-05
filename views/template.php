@@ -3,7 +3,22 @@
     <head>
         <meta charset="utf-8" />
         <title><?= $title ?></title>
+
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Open Graph meta pour Facebook -->
+        <meta property="og:title" content="<?= $title ?>" />
+        <meta property="og:url" content="http://maureenbruihier.ovh/" />
+        <meta property="og:description" content="Blog littéraire de Jean Forteroche" />
+        <meta property="og:site_name" content="Blog de Jean Forteroche" />
+        <meta property="og:type" content="website" />
+
+        <!-- Card meta pour Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@neeraum60">
+        <meta name="twitter:title" content="Blog de Jean Forteroche" />
+        <meta name="twitter:description" content="Blog littéraire de Jean Forteroche" />
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://cdn.tiny.cloud/1/72khf6of521084hk0sf61yrrmljnp9bboh7cfh2p6u33p3g4/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     </head>
