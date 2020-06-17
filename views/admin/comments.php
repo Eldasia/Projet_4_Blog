@@ -27,7 +27,7 @@
       <?php foreach ($listComments as $comment) : ?>
           <tr>
           <td><?=$comment->getAuthor()?></td>
-          <td><?=$comment->getContent()?></td>
+          <td><?=htmlspecialchars($comment->getContent())?></td>
           <td><?=$comment->getCreationDate()?></td>
           <td><a href="/adm/comments/<?= $comment->getId()?>/validate" class="btn <?php if($comment->getReporting() == 2){echo "disabled btn-outline-secondary";}else{echo "btn-outline-success";}?>">Valider</a></td>
           <td><a href="/adm/comments/<?= $comment->getId()?>/refuse" class="btn <?php if($comment->getReporting() == 1){echo "disabled btn-outline-secondary";}else{echo "btn-outline-danger";}?>">Refuser</a></td>
